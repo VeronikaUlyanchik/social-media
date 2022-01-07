@@ -1,0 +1,11 @@
+.header{
+    grid-area: h;
+    background: aquamarine;
+}
+.header img{
+    width: 100px;
+    height: 80px;
+}
+/*.dd{*/
+/*    border-radius: 50px;*/
+/*}*/
