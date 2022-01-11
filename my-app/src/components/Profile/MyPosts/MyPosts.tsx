@@ -4,13 +4,18 @@ import {Post} from './Post/Post';
 
 export const MyPosts = () => {
     return (
-        <div>my posts
+        <div className={classes.containerPosts}>
+            <h3>My posts</h3>
             <div>
                 new post
             </div>
             <div>
-                <textarea></textarea>
-                <button>Add</button>
+                <div>
+                    <textarea></textarea>
+                </div>
+                <div>
+                    <button>Add</button>
+                </div>
             </div>
             <div className={classes.posts}>
                 <Post message="Hello" likes={1000}/>
