@@ -8,14 +8,11 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import { News } from './components/News/News';
 import { Music } from './components/Music/Music';
 import { Settings } from './components/Settings/Settings';
-import {dialogsDataArrayType} from "./components/Dialogs/DialogsItems/DialogsItems";
-import {messagesItemsProps} from "./components/Dialogs/Messages/Messages";
-import {postsDataType} from "./components/Profile/MyPosts/MyPosts";
+import {stateType} from "./redux/state";
+
 
 type appPropsType={
-    dialogsData:Array<dialogsDataArrayType>
-    messagesData:Array<messagesItemsProps>
-    postData: Array<postsDataType>
+    state: stateType
 }
 
 function App(props:appPropsType) {
@@ -26,8 +23,8 @@ function App(props:appPropsType) {
                 <NavBar/>
                 <div className="app-wrapper-content">
                     <Routes>
-                        <Route path="/profile" element={<Profile postData={props.postData}/>}/>
-                        <Route path="/messages/*" element={<Dialogs dialogsData={props.dialogsData} messagesData={props.messagesData} />}/>
+                        <Route path="/profile" element={<Profile postData={props.state.profilePage.postData}/>}/>
+                        <Route path="/messages/*" element={<Dialogs dialogsPageData={props.state.dialogsPage}  />}/>
                         <Route path="/news" element={<News/>}/>
                         <Route path="/music" element={<Music/>}/>
                         <Route path="/settings" element={<Settings/>}/>

@@ -7,10 +7,6 @@ type DialogsItemsProps = {
     id: number
 };
 
- export type dialogsDataArrayType = {
-    name: string
-    id: number
-}
 
 export const DialogsItems: React.FC<DialogsItemsProps> = (props) => {
     const path = "/messages/" + props.id;
