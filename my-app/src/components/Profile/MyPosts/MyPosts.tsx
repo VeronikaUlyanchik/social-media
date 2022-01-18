@@ -2,7 +2,17 @@ import React from 'react';
 import classes from './MyPosts.module.css';
 import {Post} from './Post/Post';
 
-export const MyPosts = () => {
+export type postsDataType={
+    message:string
+    likes:number
+}
+
+type myPostPropsType={
+    postData: Array<postsDataType>
+}
+
+export const MyPosts:React.FC<myPostPropsType> = (props) => {
+    const postItems=props.postData.map((p)=><Post message={p.message} likes={p.likes}/>)
     return (
         <div className={classes.containerPosts}>
             <h3>My posts</h3>
@@ -18,8 +28,7 @@ export const MyPosts = () => {
                 </div>
             </div>
             <div className={classes.posts}>
-                <Post message="Hello" likes={1000}/>
-                <Post message="How r u?" likes={20}/>
+                {postItems}
             </div>
         </div>
     )
