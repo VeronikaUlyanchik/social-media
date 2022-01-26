@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './MyPosts.module.css';
 import {Post} from './Post/Post';
 
+
 export type postsDataType={
     message:string
     likes:number
@@ -9,9 +10,18 @@ export type postsDataType={
 
 type myPostPropsType={
     postData: Array<postsDataType>
+    addPost: (text:string)=> void
 }
 
 export const MyPosts:React.FC<myPostPropsType> = (props) => {
+    let textareaRef= React.createRef<HTMLTextAreaElement>();
+
+    const addTask = () => {
+        if (textareaRef.current) {
+            props.addPost(textareaRef.current.value);
+            textareaRef.current.value = '';
+        }
+    }
     const postItems=props.postData.map((p)=><Post message={p.message} likes={p.likes}/>)
     return (
         <div className={classes.containerPosts}>
@@ -21,10 +31,10 @@ export const MyPosts:React.FC<myPostPropsType> = (props) => {
             </div>
             <div>
                 <div>
-                    <textarea></textarea>
+                    <textarea ref={textareaRef}></textarea>
                 </div>
                 <div>
-                    <button>Add</button>
+                    <button onClick={addTask}>Add</button>
                 </div>
             </div>
             <div className={classes.posts}>

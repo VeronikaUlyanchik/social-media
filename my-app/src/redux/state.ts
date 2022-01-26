@@ -1,3 +1,5 @@
+import {rerenderDomTree} from "../render";
+
 type dialogsDataArrayType = {
     name: string
     id: number
@@ -7,6 +9,7 @@ export type messagesItemsProps = {
      id?:number
  };
 type postsDataType={
+    id: number
     message:string
     likes:number
 };
@@ -41,9 +44,28 @@ export const state:stateType={
     ]},
     profilePage:{
     postData:[
-        {message:"Hello",  likes:10},
-        {message:"How r u?",  likes:22},
-        {message:"Hi",  likes:12},
-        {message:"Yes",  likes:15},
+        {id: 1, message:"Hello",  likes:10},
+        {id: 2,message:"How r u?",  likes:22},
+        {id: 3,message:"Hi",  likes:12},
+        {id: 4,message:"Yes",  likes:15},
     ]},
+};
+
+export const addPost = (text:string) => {
+    let newPost:postsDataType = {
+        id: state.profilePage.postData.length+1,
+        message: text,
+        likes: 0,
+    }
+    state.profilePage.postData = [newPost, ...state.profilePage.postData]
+    rerenderDomTree(state)
+}
+
+export const addMessage = (messageText:string)=>{
+    let newMessage:messagesItemsProps= {
+        id:state.dialogsPage.messages.length+1,
+        message: messageText
+    }
+    state.dialogsPage.messages = [...state.dialogsPage.messages, newMessage]
+    rerenderDomTree(state)
 }
