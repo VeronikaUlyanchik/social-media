@@ -8,11 +8,11 @@ type DialogsItemsProps = {
 };
 
 
-export const DialogsItems: React.FC<DialogsItemsProps> = (props) => {
-    const path = "/messages/" + props.id;
+export const DialogsItems: React.FC<DialogsItemsProps> = ({id, name, ...props}) => {
+    const path = "/messages/" + id;
     return (
         <div className={classes.dialog}>
-            <NavLink to={path}>{props.name}</NavLink>
+            <NavLink to={path}>{name}</NavLink>
         </div>
     )
 }

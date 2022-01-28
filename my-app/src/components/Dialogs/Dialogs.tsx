@@ -10,18 +10,18 @@ type dialogsPropsType={
     addMessage: (messageText:string)=>void
 }
 
-export const Dialogs:React.FC<dialogsPropsType> = (props) => {
+export const Dialogs:React.FC<dialogsPropsType> = ({dialogsPageData,addMessage,...props}) => {
 
     const textareaMessageRef = React.createRef<HTMLTextAreaElement>()
 
     const sendMessage = () => {
         if (textareaMessageRef.current) {
-            props.addMessage(textareaMessageRef.current.value);
+            addMessage(textareaMessageRef.current.value);
             textareaMessageRef.current.value = '';
         }
     }
-    const dialogsItems = props.dialogsPageData.dialogs.map((d => <DialogsItems name={d.name} id={d.id}/>));
-    const messageItems = props.dialogsPageData.messages.map((m => <MessagesItems message={m.message}/>));
+    const dialogsItems = dialogsPageData.dialogs.map((d => <DialogsItems name={d.name} id={d.id}/>));
+    const messageItems = dialogsPageData.messages.map((m => <MessagesItems message={m.message}/>));
     return (
         <div className={classes.dialogsContent}>
             <div className={classes.dialogsItems}>

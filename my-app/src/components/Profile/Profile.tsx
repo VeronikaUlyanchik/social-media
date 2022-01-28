@@ -5,14 +5,15 @@ import { ProfileInfo } from './ProfileInfo/ProfileInfo';
 
 type profilePropsType={
     postData: Array<postsDataType>
-    addPost:(text: string) => void
+    addPost:() => void
+    changePostState:(text: string) => void
 }
 
-export const Profile:React.FC<profilePropsType> =(props)=>{
+export const Profile:React.FC<profilePropsType> =({postData, addPost,changePostState,...props})=>{
     return (
         <div>
             <ProfileInfo />
-           <MyPosts postData={props.postData} addPost={props.addPost}/>
+           <MyPosts postData={postData} addPost={addPost} changePostState={changePostState}/>
         </div>
     )
 }

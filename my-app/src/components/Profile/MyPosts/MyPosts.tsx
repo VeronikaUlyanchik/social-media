@@ -10,7 +10,8 @@ export type postsDataType={
 
 type myPostPropsType={
     postData: Array<postsDataType>
-    addPost: (text:string)=> void
+    addPost: ()=> void
+    changePostState: (text:string)=> void
 }
 
 export const MyPosts:React.FC<myPostPropsType> = (props) => {
@@ -18,11 +19,16 @@ export const MyPosts:React.FC<myPostPropsType> = (props) => {
 
     const addTask = () => {
         if (textareaRef.current) {
-            props.addPost(textareaRef.current.value);
+            props.addPost();
             textareaRef.current.value = '';
         }
     }
-    const postItems=props.postData.map((p)=><Post message={p.message} likes={p.likes}/>)
+    const postItems=props.postData.map((p)=><Post message={p.message} likes={p.likes}/>);
+    const onPostChange = () => {
+        if (textareaRef.current){
+            props.changePostState(textareaRef.current.value)
+        }
+    }
     return (
         <div className={classes.containerPosts}>
             <h3>My posts</h3>
@@ -31,7 +37,7 @@ export const MyPosts:React.FC<myPostPropsType> = (props) => {
             </div>
             <div>
                 <div>
-                    <textarea ref={textareaRef}></textarea>
+                    <textarea ref={textareaRef} onChange={onPostChange}></textarea>
                 </div>
                 <div>
                     <button onClick={addTask}>Add</button>

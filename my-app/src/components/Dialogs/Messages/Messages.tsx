@@ -4,8 +4,8 @@ import {messagesItemsProps} from "../../../redux/state";
 
 
 
-export const MessagesItems: React.FC<messagesItemsProps> = (props) => {
-    return <div className={classes.message}>{props.message}</div>
+export const MessagesItems: React.FC<messagesItemsProps> = ({message,...props}) => {
+    return <div className={classes.message}>{message}</div>
 };
 
 
