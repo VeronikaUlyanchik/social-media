@@ -2,7 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {state} from "./redux/state";
-import {rerenderDomTree} from "./render";
+import {store, stateType} from "./redux/state";
+import { BrowserRouter } from 'react-router-dom';
 
-rerenderDomTree(state)
+const rerenderDomTree = (state:stateType)=> {
+    ReactDOM.render(
+        <BrowserRouter>
+            <App state={state} store={store}/>
+        </BrowserRouter>,
+        document.getElementById('root')
+    );
+};
+
+rerenderDomTree(store.getState());
+
+store.observer(rerenderDomTree);

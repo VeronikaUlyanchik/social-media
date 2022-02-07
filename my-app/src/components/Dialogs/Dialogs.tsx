@@ -2,12 +2,12 @@ import React from 'react';
 import classes from './Dialogs.module.css';
 import {DialogsItems} from "./DialogsItems/DialogsItems";
 import {MessagesItems} from "./Messages/Messages";
-import {dialogsPageStateType} from "../../redux/state";
+import {addMessageActionCreator, dialogsPageStateType, dispatchActionType} from "../../redux/state";
 
 
 type dialogsPropsType={
     dialogsPageData:dialogsPageStateType
-    addMessage: (messageText:string)=>void
+    addMessage: (action: dispatchActionType) => void
 }
 
 export const Dialogs:React.FC<dialogsPropsType> = ({dialogsPageData,addMessage,...props}) => {
@@ -16,7 +16,7 @@ export const Dialogs:React.FC<dialogsPropsType> = ({dialogsPageData,addMessage,.
 
     const sendMessage = () => {
         if (textareaMessageRef.current) {
-            addMessage(textareaMessageRef.current.value);
+            addMessage(addMessageActionCreator(textareaMessageRef.current.value));
             textareaMessageRef.current.value = '';
         }
     }

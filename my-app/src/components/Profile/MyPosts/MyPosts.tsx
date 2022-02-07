@@ -1,34 +1,38 @@
 import React from 'react';
+import {addPostActionCreator, changePostStateActionCreator, dispatchActionType } from '../../../redux/state';
 import classes from './MyPosts.module.css';
 import {Post} from './Post/Post';
 
 
-export type postsDataType={
-    message:string
-    likes:number
+export type postsDataType = {
+    message: string
+    likes: number
 }
 
-type myPostPropsType={
+type myPostPropsType = {
     postData: Array<postsDataType>
-    addPost: ()=> void
-    changePostState: (text:string)=> void
+    addPost:(action: dispatchActionType) => void
+    changePostState: (action: dispatchActionType) => void
 }
 
-export const MyPosts:React.FC<myPostPropsType> = (props) => {
-    let textareaRef= React.createRef<HTMLTextAreaElement>();
+export const MyPosts: React.FC<myPostPropsType> = (props) => {
+    let textareaRef = React.createRef<HTMLTextAreaElement>();
 
     const addTask = () => {
         if (textareaRef.current) {
-            props.addPost();
-            textareaRef.current.value = '';
+            if (textareaRef.current.value.trim()) {
+                props.addPost(addPostActionCreator());
+                textareaRef.current.value = '';
+            }
         }
-    }
-    const postItems=props.postData.map((p)=><Post message={p.message} likes={p.likes}/>);
+    };
+    const postItems = props.postData.map((p) => <Post message={p.message} likes={p.likes}/>);
     const onPostChange = () => {
-        if (textareaRef.current){
-            props.changePostState(textareaRef.current.value)
+        debugger
+        if (textareaRef.current) {
+            props.changePostState(changePostStateActionCreator(textareaRef.current.value))
         }
-    }
+    };
     return (
         <div className={classes.containerPosts}>
             <h3>My posts</h3>
@@ -48,4 +52,4 @@ export const MyPosts:React.FC<myPostPropsType> = (props) => {
             </div>
         </div>
     )
-}
+};

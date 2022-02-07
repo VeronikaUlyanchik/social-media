@@ -3,17 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="3902cf3b-e0df-42e2-9dc9-1bd6b85ae9ac" name="Changes" comment="Second week (18-23 way)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-app/src/App.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/App.test.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-app/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-app/src/components/Dialogs/Dialogs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Dialogs/Dialogs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/components/Dialogs/DialogsItems/DialogsItems.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Dialogs/DialogsItems/DialogsItems.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/components/Dialogs/Messages/Messages.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Dialogs/Messages/Messages.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/components/NavBar/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/NavBar/NavBar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-app/src/components/Profile/MyPosts/MyPosts.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Profile/MyPosts/MyPosts.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-app/src/components/Profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Profile/Profile.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-app/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-app/src/redux/state.ts" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/redux/state.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/render.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/render.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/render.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,6 +91,15 @@
       <workItem from="1641915741831" duration="12369000" />
       <workItem from="1641993447869" duration="39000" />
       <workItem from="1643321043600" duration="3678000" />
+      <workItem from="1643369586163" duration="282000" />
+      <workItem from="1643459978384" duration="1870000" />
+      <workItem from="1643643252638" duration="80000" />
+      <workItem from="1643647990688" duration="2024000" />
+      <workItem from="1643748536778" duration="2563000" />
+      <workItem from="1643814394994" duration="83000" />
+      <workItem from="1643996014972" duration="2050000" />
+      <workItem from="1644063785624" duration="236000" />
+      <workItem from="1644268767352" duration="2188000" />
     </task>
     <task id="LOCAL-00001" summary="react added">
       <created>1641326383349</created>
