@@ -1,3 +1,6 @@
+import { dialogsReducer } from "./dialogs-reducer";
+import { profileReducer } from "./profile-reducer";
+
 let rerenderDomTree = (state: stateType) => {
     console.log('render')
 }
@@ -15,13 +18,14 @@ type postsDataType = {
     message: string
     likes: number
 };
-type profilePageStateType = {
+export type profilePageStateType = {
     postData: Array<postsDataType>
     newPostText: string
 };
 export type dialogsPageStateType = {
     dialogs: Array<dialogsDataArrayType>
     messages: Array<messagesItemsProps>
+    newMessageBody:string
 };
 export type stateType = {
     dialogsPage: dialogsPageStateType
@@ -30,9 +34,6 @@ export type stateType = {
 
 export type storeType= {
     _state: stateType
-    // addPost: ()=> void
-    // addMessage: (messageText:string)=>void
-    // changePostState: (text:string)=> void
     observer: (subscriber: ((state: stateType) => void)) => void
     getState: ()=> stateType
     dispatch: (action: dispatchActionType) => void
@@ -41,9 +42,6 @@ export type dispatchActionType ={
     type: string
     [key: string] : string
 }
-const ADD_POST = 'ADD_POST';
-const ADD_MESSAGE = 'ADD_MESSAGE';
-const CHANGE_POST_STATE = 'CHANGE_POST_STATE';
 
 
 export const store:storeType = {
@@ -62,7 +60,8 @@ export const store:storeType = {
                 {id: 3, message: "I like reading"},
                 {id: 4, message: "What are you doing?"},
                 {id: 5, message: "Please"},
-            ]
+            ],
+            newMessageBody: ''
         },
         profilePage: {
             postData: [
@@ -78,34 +77,12 @@ export const store:storeType = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            let newPost: postsDataType = {
-                id: this._state.profilePage.postData.length + 1,
-                message: this._state.profilePage.newPostText,
-                likes: 0,
-            }
-            this._state.profilePage.postData = [newPost, ...this._state.profilePage.postData];
-            rerenderDomTree(this._state)
-        }
-        else if(action.type === ADD_MESSAGE){
-            let newMessage: messagesItemsProps = {
-                id: this._state.dialogsPage.messages.length + 1,
-                message: action.messageText
-            }
-            this._state.dialogsPage.messages = [...this._state.dialogsPage.messages, newMessage]
-            rerenderDomTree(this._state)
-        }
-        else if (action.type === CHANGE_POST_STATE){
-            debugger
-            this._state.profilePage.newPostText = action.text;
-            rerenderDomTree(this._state);
-        }
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        rerenderDomTree(this._state)
     },
     observer(subscriber: ((state: stateType) => void)) {
         rerenderDomTree = subscriber;
     }
 }
 
-export const addPostActionCreator = () =>({type:ADD_POST});
-export const addMessageActionCreator = (messageText:string) =>({type:ADD_MESSAGE, messageText: messageText });
-export const changePostStateActionCreator = (text:string) =>({type:CHANGE_POST_STATE, text:text});

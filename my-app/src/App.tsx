@@ -14,9 +14,6 @@ import { stateType, storeType} from "./redux/state";
 type appPropsType={
     state: stateType
     store: storeType
-    // addPost: ()=> void
-    // addMessage: (messageText:string)=>void
-    // changePostState: (text:string)=> void
 }
 
 function App({state,store, ...props}:appPropsType) {

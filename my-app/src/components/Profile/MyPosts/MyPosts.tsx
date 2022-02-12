@@ -1,10 +1,12 @@
 import React from 'react';
-import {addPostActionCreator, changePostStateActionCreator, dispatchActionType } from '../../../redux/state';
+import { dispatchActionType } from '../../../redux/state';
+import { addPostActionCreator, changePostStateActionCreator } from '../../../redux/profile-reducer';
 import classes from './MyPosts.module.css';
 import {Post} from './Post/Post';
 
 
 export type postsDataType = {
+    id: number
     message: string
     likes: number
 }
