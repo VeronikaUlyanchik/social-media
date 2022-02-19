@@ -1,9 +1,7 @@
 import { dialogsReducer } from "./dialogs-reducer";
 import { profileReducer } from "./profile-reducer";
 
-let rerenderDomTree = (state: stateType) => {
-    console.log('render')
-}
+
 
 type dialogsDataArrayType = {
     name: string
@@ -34,6 +32,7 @@ export type stateType = {
 
 export type storeType= {
     _state: stateType
+    _callSubscriber: (state: stateType) => void
     observer: (subscriber: ((state: stateType) => void)) => void
     getState: ()=> stateType
     dispatch: (action: dispatchActionType) => void
@@ -76,13 +75,16 @@ export const store:storeType = {
     getState() {
         return this._state
     },
+    _callSubscriber(state: stateType) {
+        console.log('render')
+    },
     dispatch(action) {
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
         this._state.profilePage = profileReducer(this._state.profilePage, action);
-        rerenderDomTree(this._state)
+        this._callSubscriber(this._state)
     },
     observer(subscriber: ((state: stateType) => void)) {
-        rerenderDomTree = subscriber;
+        this._callSubscriber = subscriber;
     }
 }
 

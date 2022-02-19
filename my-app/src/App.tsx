@@ -9,11 +9,13 @@ import { News } from './components/News/News';
 import { Music } from './components/Music/Music';
 import { Settings } from './components/Settings/Settings';
 import { stateType, storeType} from "./redux/state";
+import { ReduxStoreType } from './redux/reduxState';
+import { DialogsContainer } from './components/Dialogs/DialogsContainer';
 
 
 type appPropsType={
+    store: ReduxStoreType
     state: stateType
-    store: storeType
 }
 
 function App({state,store, ...props}:appPropsType) {
@@ -23,8 +25,13 @@ function App({state,store, ...props}:appPropsType) {
                 <NavBar/>
                 <div className="app-wrapper-content">
                     <Routes>
-                        <Route path="/profile" element={<Profile postData={state.profilePage.postData} addPost={store.dispatch.bind(store)} changePostState={store.dispatch.bind(store)}/>}/>
-                        <Route path="/messages/*" element={<Dialogs dialogsPageData={state.dialogsPage} addMessage={store.dispatch.bind(store)} />}/>
+                        <Route path="/profile" element={<Profile
+                            store={store}
+                        />}/>
+                        <Route path="/messages/*" element={<DialogsContainer
+                            store={store}
+                            //dialogsPageData={state.dialogsPage} addMessage={store.dispatch.bind(state)}
+                        />}/>
                         <Route path="/news" element={<News/>}/>
                         <Route path="/music" element={<Music/>}/>
                         <Route path="/settings" element={<Settings/>}/>

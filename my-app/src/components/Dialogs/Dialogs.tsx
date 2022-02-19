@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import classes from './Dialogs.module.css';
 import {DialogsItems} from "./DialogsItems/DialogsItems";
 import {MessagesItems} from "./Messages/Messages";
@@ -8,26 +8,29 @@ import {addMessageActionCreator, changeMessageStateActionCreator} from "../../re
 
 type dialogsPropsType={
     dialogsPageData:dialogsPageStateType
-    addMessage: (action: dispatchActionType) => void
+    addMessage: (text:string) => void
+    sendMessage: () => void
+
 }
 
 export const Dialogs:React.FC<dialogsPropsType> = ({dialogsPageData,addMessage,...props}) => {
 
-    const textareaMessageRef = React.createRef<HTMLTextAreaElement>()
+    //const textareaMessageRef = React.createRef<HTMLTextAreaElement>();
+    const [messageText, setMessageText] = useState(dialogsPageData.newMessageBody);
 
     const sendMessage = () => {
-        if (textareaMessageRef.current) {
-            addMessage(addMessageActionCreator())
-            textareaMessageRef.current.value = '';
+        if (dialogsPageData.newMessageBody) {
+            props.sendMessage()
+            setMessageText('');
         }
     }
     const dialogsItems = dialogsPageData.dialogs.map((d => <DialogsItems name={d.name} id={d.id}/>));
     const messageItems = dialogsPageData.messages.map((m => <MessagesItems message={m.message}/>));
-    const newMessageBody = dialogsPageData.newMessageBody;
 
     const onChangeMessage = (e:ChangeEvent<HTMLTextAreaElement>) => {
+        setMessageText(e.currentTarget.value)
         let text = e.currentTarget.value
-        addMessage(changeMessageStateActionCreator(text))
+        addMessage(text)
     }
     return (
         <div className={classes.dialogsContent}>
@@ -37,9 +40,9 @@ export const Dialogs:React.FC<dialogsPropsType> = ({dialogsPageData,addMessage,.
             <div className={classes.messagesItems}>
                 {messageItems}
                 <div>
-                    <textarea value={newMessageBody}
+                    <textarea value={messageText}
                               onChange={onChangeMessage}
-                              ref={textareaMessageRef}
+                              // ref={textareaMessageRef}
                     placeholder={'Enter your message'}> </textarea> <button onClick={sendMessage}>Send</button>
                 </div>
             </div>

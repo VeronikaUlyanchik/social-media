@@ -1,8 +1,7 @@
-import React from 'react';
-import { dispatchActionType } from '../../../redux/state';
-import { addPostActionCreator, changePostStateActionCreator } from '../../../redux/profile-reducer';
+import React, { ChangeEvent, useState } from 'react';
 import classes from './MyPosts.module.css';
 import {Post} from './Post/Post';
+
 
 
 export type postsDataType = {
@@ -13,28 +12,34 @@ export type postsDataType = {
 
 type myPostPropsType = {
     postData: Array<postsDataType>
-    addPost:(action: dispatchActionType) => void
-    changePostState: (action: dispatchActionType) => void
+    addPost:() => void
+    changePostState: (text: string) => void
+    newPostText: string
 }
 
 export const MyPosts: React.FC<myPostPropsType> = (props) => {
-    let textareaRef = React.createRef<HTMLTextAreaElement>();
 
-    const addTask = () => {
-        if (textareaRef.current) {
-            if (textareaRef.current.value.trim()) {
-                props.addPost(addPostActionCreator());
-                textareaRef.current.value = '';
+    // let textareaRef = React.createRef<HTMLTextAreaElement>();
+    const [postText, setPostText] = useState(props.newPostText);
+
+    const addPost = () => {
+        if (postText) {
+            if (postText.trim()) {
+                props.addPost();
+                setPostText('');
             }
         }
     };
+
     const postItems = props.postData.map((p) => <Post message={p.message} likes={p.likes}/>);
-    const onPostChange = () => {
-        debugger
-        if (textareaRef.current) {
-            props.changePostState(changePostStateActionCreator(textareaRef.current.value))
+
+    const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        setPostText(e.currentTarget.value)
+        if (postText) {
+            props.changePostState(postText)
         }
     };
+
     return (
         <div className={classes.containerPosts}>
             <h3>My posts</h3>
@@ -43,10 +48,13 @@ export const MyPosts: React.FC<myPostPropsType> = (props) => {
             </div>
             <div>
                 <div>
-                    <textarea ref={textareaRef} onChange={onPostChange}></textarea>
+                    <textarea
+                        value={postText}
+                        // ref={textareaRef}
+                        onChange={onPostChange}> </textarea>
                 </div>
                 <div>
-                    <button onClick={addTask}>Add</button>
+                    <button onClick={addPost}>Add</button>
                 </div>
             </div>
             <div className={classes.posts}>

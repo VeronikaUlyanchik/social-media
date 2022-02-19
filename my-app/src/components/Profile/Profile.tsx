@@ -1,20 +1,20 @@
 import React from 'react';
+import { ReduxStoreType } from '../../redux/reduxState';
 import { dispatchActionType } from '../../redux/state';
 import {MyPosts, postsDataType} from './MyPosts/MyPosts';
+import { MyPostsContainer } from './MyPosts/MyPostsContainer';
 import classes from './Profile.module.css';
 import { ProfileInfo } from './ProfileInfo/ProfileInfo';
 
 type profilePropsType={
-    postData: Array<postsDataType>
-    addPost:(action: dispatchActionType) => void
-    changePostState:(action: dispatchActionType) => void
+    store: ReduxStoreType
 }
 
-export const Profile:React.FC<profilePropsType> =({postData, addPost,changePostState,...props})=>{
+export const Profile:React.FC<profilePropsType> =({store,...props})=>{
     return (
         <div>
             <ProfileInfo />
-           <MyPosts postData={postData} addPost={addPost} changePostState={changePostState}/>
+           <MyPostsContainer store={store}/>
         </div>
     )
 }
