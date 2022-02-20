@@ -1,27 +1,36 @@
-import React, { ChangeEvent } from 'react';
+import React, {ChangeEvent} from 'react';
 import classes from './Dialogs.module.css';
 import {DialogsItems} from "./DialogsItems/DialogsItems";
 import {MessagesItems} from "./Messages/Messages";
-import { dialogsPageStateType, dispatchActionType} from "../../redux/state";
+import {dialogsPageStateType, dispatchActionType} from "../../redux/state";
 import {addMessageActionCreator, changeMessageStateActionCreator} from "../../redux/dialogs-reducer";
-import { ReduxStoreType } from '../../redux/reduxState';
-import { Dialogs } from './Dialogs';
+import {ReduxStoreType} from '../../redux/reduxState';
+import {Dialogs} from './Dialogs';
+import {StoreContext} from '../../content';
 
 
-type DialogsContainerPropsType={
-    store: ReduxStoreType
+type DialogsContainerPropsType = {
+    store?: ReduxStoreType
 }
 
-export const DialogsContainer:React.FC<DialogsContainerPropsType> = ({store}) => {
+export const DialogsContainer: React.FC<DialogsContainerPropsType> = (props) => {
 
-    const sendMessage = () => {
-            store.dispatch.bind(store)(addMessageActionCreator())
-    }
+return(
+    <StoreContext.Consumer>
+        {store => {
+            const sendMessage = () => {
+                store.dispatch.bind(store)(addMessageActionCreator())
+            }
 
-    const onChangeMessage = (text:string) => {
-        store.dispatch.bind(store)(changeMessageStateActionCreator(text))
-    }
-    return (
-       <Dialogs dialogsPageData={store.getState().dialogsPage} addMessage={onChangeMessage} sendMessage={sendMessage}/>
-    )
+            const onChangeMessage = (text: string) => {
+                store.dispatch.bind(store)(changeMessageStateActionCreator(text))
+            }
+            return (
+                <Dialogs dialogsPageData={store.getState().dialogsPage} addMessage={onChangeMessage}
+                         sendMessage={sendMessage}/>
+            )
+        }
+        }
+    </StoreContext.Consumer>
+)
 };

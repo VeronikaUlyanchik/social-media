@@ -14,11 +14,13 @@ import { DialogsContainer } from './components/Dialogs/DialogsContainer';
 
 
 type appPropsType={
-    store: ReduxStoreType
-    state: stateType
+   store?: ReduxStoreType
+    state?: stateType
 }
 
-function App({state,store, ...props}:appPropsType) {
+function App({state,
+                 store,
+                 ...props}:appPropsType) {
     return (
             <div className="app-wrapper">
                 <Header/>
@@ -26,10 +28,10 @@ function App({state,store, ...props}:appPropsType) {
                 <div className="app-wrapper-content">
                     <Routes>
                         <Route path="/profile" element={<Profile
-                            store={store}
+                            //store={store}
                         />}/>
                         <Route path="/messages/*" element={<DialogsContainer
-                            store={store}
+                            //store={store}
                             //dialogsPageData={state.dialogsPage} addMessage={store.dispatch.bind(state)}
                         />}/>
                         <Route path="/news" element={<News/>}/>

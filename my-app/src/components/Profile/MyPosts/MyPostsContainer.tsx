@@ -4,25 +4,32 @@ import { addPostActionCreator, changePostStateActionCreator } from '../../../red
 import {Post} from './Post/Post';
 import { ReduxStoreType } from '../../../redux/reduxState';
 import { MyPosts } from './MyPosts';
-
+import { StoreContext } from '../../../content';
 
 
 type myPostContainerPropsType = {
-    store: ReduxStoreType
+    store?: ReduxStoreType
 }
 
-export const MyPostsContainer: React.FC<myPostContainerPropsType> = ({store}) => {
-    const addTask = () => {
-                store.dispatch.bind(store)(addPostActionCreator());
-    };
+export const MyPostsContainer: React.FC<myPostContainerPropsType> = (props) => {
 
-    const onPostChange = (text: string) => {
-        if (text) {
-            store.dispatch.bind(store)(changePostStateActionCreator(text))
-        }
-    };
 
     return (
-      <MyPosts addPost={addTask} postData={store.getState().profilePage.postData} changePostState={onPostChange} newPostText={store.getState().profilePage.newPostText}/>
+        <StoreContext.Consumer>
+            { (store) => {
+                const addTask = () => {
+                    store.dispatch.bind(store)(addPostActionCreator());
+                }
+
+                const onPostChange = (text: string) => {
+                    if (text) {
+                        store.dispatch.bind(store)(changePostStateActionCreator(text))
+                    }
+                }
+              return <MyPosts addPost={addTask} postData={store.getState().profilePage.postData}
+                         changePostState={onPostChange} newPostText={store.getState().profilePage.newPostText}/>
+            } }
+        </StoreContext.Consumer>
+
     )
 };
