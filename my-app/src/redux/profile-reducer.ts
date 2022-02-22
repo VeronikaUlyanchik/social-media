@@ -14,7 +14,7 @@ let initialState = {
         newPostText: ''
 };
 
-export const profileReducer = (state:profilePageStateType = initialState, action:dispatchActionType) => {
+export const profileReducer = (state:profilePageStateType = initialState, action:dispatchActionType):profilePageStateType => {
     switch (action.type) {
         case ADD_POST:
             let newPost: postsDataType = {
@@ -24,7 +24,7 @@ export const profileReducer = (state:profilePageStateType = initialState, action
             }
             state.postData = [newPost, ...state.postData];
             state.newPostText = '';
-            return state;
+            return {...state};
         case CHANGE_POST_STATE:
             state.newPostText = action.text
             return state;

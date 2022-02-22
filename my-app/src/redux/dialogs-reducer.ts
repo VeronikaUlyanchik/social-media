@@ -30,7 +30,7 @@ export const dialogsReducer = (state: dialogsPageStateType = initialState, actio
             }
             state.messages = [...state.messages, newMessage];
             state.newMessageBody = '';
-            return state;
+            return {...state}; // в диалогс работает только копией, а тут без работает, почему
         case CHANGE_MESSAGE_STATE:
             state.newMessageBody = action.text;
             return state;
