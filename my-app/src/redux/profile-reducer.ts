@@ -22,12 +22,10 @@ export const profileReducer = (state:profilePageStateType = initialState, action
                 message: state.newPostText,
                 likes: 0,
             }
-            state.postData = [newPost, ...state.postData];
-            state.newPostText = '';
-            return {...state};
-        case CHANGE_POST_STATE:
-            state.newPostText = action.text
-            return state;
+            return {...state, postData: [newPost, ...state.postData], newPostText : ''};
+        case CHANGE_POST_STATE: {
+            return {...state, newPostText: action.text};
+        }
         default:
             return state;
     }

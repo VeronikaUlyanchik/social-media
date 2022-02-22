@@ -7,9 +7,6 @@ import {store} from "./redux/reduxState";
 import {BrowserRouter} from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-
-
-const rerenderDomTree = (state: stateType) => {
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
@@ -18,8 +15,6 @@ const rerenderDomTree = (state: stateType) => {
         </BrowserRouter>,
         document.getElementById('root')
     );
-};
 
-rerenderDomTree(store.getState());
 
-store.subscribe(() => rerenderDomTree(store.getState()));
+

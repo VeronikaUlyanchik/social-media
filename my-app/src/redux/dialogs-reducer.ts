@@ -3,7 +3,7 @@ import {dialogsPageStateType, dispatchActionType, messagesItemsProps, stateType}
 const ADD_MESSAGE = 'ADD_MESSAGE';
 const CHANGE_MESSAGE_STATE = 'CHANGE_MESSAGE_STATE';
 
-let initialState =  {
+let initialState = {
     dialogs: [
         {name: 'Egor', id: 1},
         {name: 'Vova', id: 2},
@@ -21,23 +21,20 @@ let initialState =  {
     newMessageBody: ''
 };
 
-export const dialogsReducer = (state: dialogsPageStateType = initialState, action: dispatchActionType):dialogsPageStateType => {
+export const dialogsReducer = (state: dialogsPageStateType = initialState, action: dispatchActionType): dialogsPageStateType => {
     switch (action.type) {
         case ADD_MESSAGE:
             let newMessage: messagesItemsProps = {
                 id: state.messages.length + 1,
                 message: state.newMessageBody
             }
-            state.messages = [...state.messages, newMessage];
-            state.newMessageBody = '';
-            return {...state}; // в диалогс работает только копией, а тут без работает, почему
+            return {...state, messages: [...state.messages, newMessage], newMessageBody: ''};
         case CHANGE_MESSAGE_STATE:
-            state.newMessageBody = action.text;
-            return state;
+            return {...state, newMessageBody: action.text};
         default:
             return state
     }
 }
 
-export const addMessageActionCreator = () =>({type:ADD_MESSAGE});
-export const changeMessageStateActionCreator = (text:string) =>({type:CHANGE_MESSAGE_STATE, text:text});
+export const addMessageActionCreator = () => ({type: ADD_MESSAGE});
+export const changeMessageStateActionCreator = (text: string) => ({type: CHANGE_MESSAGE_STATE, text: text});
