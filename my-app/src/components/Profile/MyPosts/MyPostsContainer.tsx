@@ -2,13 +2,13 @@ import React, {ChangeEvent, useState} from 'react';
 import {dispatchActionType, stateType} from '../../../redux/state';
 import {addPostActionCreator, changePostStateActionCreator} from '../../../redux/profile-reducer';
 import {Post} from './Post/Post';
-import {ReduxStoreType} from '../../../redux/reduxState';
+import {AppStateType} from '../../../redux/reduxState';
 import {MyPosts} from './MyPosts';
 import {connect} from 'react-redux';
 
 
 type myPostContainerPropsType = {
-    store?: ReduxStoreType
+    store?: AppStateType
 }
 
 let mapStateToProps = (state: stateType) => {

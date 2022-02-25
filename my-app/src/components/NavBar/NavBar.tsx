@@ -22,6 +22,9 @@ export const NavBar:React.FC = () => {
             <div className={classes.item}><NavLink
                 className={({isActive})=>isActive ? classes.activeLink : classes.item}
                 to="/settings">Settings</NavLink></div>
+            <div className={classes.item}><NavLink
+                className={({isActive})=>isActive ? classes.activeLink : classes.item}
+                to="/users">Users</NavLink></div>
         </nav>
     )
 }

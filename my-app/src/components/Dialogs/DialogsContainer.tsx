@@ -4,7 +4,6 @@ import {DialogsItems} from "./DialogsItems/DialogsItems";
 import {MessagesItems} from "./Messages/Messages";
 import {dialogsPageStateType, dispatchActionType, stateType} from "../../redux/state";
 import {addMessageActionCreator, changeMessageStateActionCreator} from "../../redux/dialogs-reducer";
-import {ReduxStoreType} from '../../redux/reduxState';
 import {Dialogs} from './Dialogs';
 import {connect} from 'react-redux';
 
