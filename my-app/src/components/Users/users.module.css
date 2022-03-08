@@ -6,3 +6,6 @@
 .container {
     margin: 20px;
 }
+.currenPage{
+    font-weight: bold;
+}
