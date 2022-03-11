@@ -8,19 +8,19 @@ import {addMessageActionCreator, changeMessageStateActionCreator} from "../../re
 
 type dialogsPropsType={
     dialogsPageData:dialogsPageStateType
-    addMessage: (text:string) => void
-    sendMessage: () => void
+    changeMessageStateActionCreator: (text:string) => void
+    addMessageActionCreator: () => void
 
 }
 
-export const Dialogs:React.FC<dialogsPropsType> = ({dialogsPageData,addMessage,...props}) => {
+export const Dialogs:React.FC<dialogsPropsType> = ({dialogsPageData,changeMessageStateActionCreator,...props}) => {
 
     //const textareaMessageRef = React.createRef<HTMLTextAreaElement>();
     const [messageText, setMessageText] = useState(dialogsPageData.newMessageBody);
 
     const sendMessage = () => {
         if (dialogsPageData.newMessageBody) {
-            props.sendMessage()
+            props.addMessageActionCreator()
             setMessageText('');
         }
     }
@@ -30,7 +30,7 @@ export const Dialogs:React.FC<dialogsPropsType> = ({dialogsPageData,addMessage,.
     const onChangeMessage = (e:ChangeEvent<HTMLTextAreaElement>) => {
         setMessageText(e.currentTarget.value)
         let text = e.currentTarget.value
-        addMessage(text)
+        changeMessageStateActionCreator(text)
     }
     return (
         <div className={classes.dialogsContent}>

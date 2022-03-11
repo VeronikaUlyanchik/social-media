@@ -7,10 +7,6 @@ import {MyPosts} from './MyPosts';
 import {connect} from 'react-redux';
 
 
-type myPostContainerPropsType = {
-    store?: AppStateType
-}
-
 let mapStateToProps = (state: stateType) => {
     return {
         postData: state.profilePage.postData,
@@ -18,16 +14,16 @@ let mapStateToProps = (state: stateType) => {
     }
 }
 
-let mapDispatchToProps = (dispatch: (action: dispatchActionType) => void) => {
-    return {
-        addPost: () => {
-            dispatch(addPostActionCreator())
-        },
-        changePostState: (text: string) => {
-            dispatch(changePostStateActionCreator(text))
+// let mapDispatchToProps = (dispatch: (action: dispatchActionType) => void) => {
+//     return {
+//         addPost: () => {
+//             dispatch(addPostActionCreator())
+//         },
+//         changePostState: (text: string) => {
+//             dispatch(changePostStateActionCreator(text))
+//
+//         }
+//     }
+// }
 
-        }
-    }
-}
-
-export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
+export const MyPostsContainer = connect(mapStateToProps, {addPostActionCreator,changePostStateActionCreator})(MyPosts)

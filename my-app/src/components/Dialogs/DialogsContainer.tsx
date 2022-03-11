@@ -12,16 +12,16 @@ let mapStateToProps = (state:stateType) => {
         dialogsPageData: state.dialogsPage
     }
 }
-let mapDispatchToProps = (dispatch:(action: dispatchActionType) => void) => {
-    return {
-        sendMessage:()=>{
-            dispatch(addMessageActionCreator())
-    },
-        addMessage:(text:string)=>{
-            dispatch(changeMessageStateActionCreator(text))
-        }
-    }
-}
+// let mapDispatchToProps = (dispatch:(action: dispatchActionType) => void) => {
+//     return {
+//         sendMessage:()=>{
+//             dispatch(addMessageActionCreator())
+//     },
+//         addMessage:(text:string)=>{
+//             dispatch(changeMessageStateActionCreator(text))
+//         }
+//     }
+// }
 
 
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+export const DialogsContainer = connect(mapStateToProps, {addMessageActionCreator, changeMessageStateActionCreator})(Dialogs)

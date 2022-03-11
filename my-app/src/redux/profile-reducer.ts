@@ -17,6 +17,7 @@ let initialState = {
 export const profileReducer = (state:profilePageStateType = initialState, action:dispatchActionType):profilePageStateType => {
     switch (action.type) {
         case ADD_POST:
+            debugger
             let newPost: postsDataType = {
                 id: state.postData.length + 1,
                 message: state.newPostText,
@@ -24,6 +25,7 @@ export const profileReducer = (state:profilePageStateType = initialState, action
             }
             return {...state, postData: [newPost, ...state.postData], newPostText : ''};
         case CHANGE_POST_STATE: {
+            debugger
             return {...state, newPostText: action.text};
         }
         default:

@@ -11,31 +11,31 @@ export type postsDataType = {
 
 type myPostPropsType = {
     postData: Array<postsDataType>
-    addPost:() => void
-    changePostState: (text: string) => void
+    addPostActionCreator:() => void
+    changePostStateActionCreator: (text: string) => void
     newPostText: string
 }
 
 export const MyPosts: React.FC<myPostPropsType> = (props) => {
 
     // let textareaRef = React.createRef<HTMLTextAreaElement>();
-    const [postText, setPostText] = useState(props.newPostText);
+   const [postText, setPostText] = useState(props.newPostText);
 
     const addPost = () => {
         if (postText) {
             if (postText.trim()) {
-                props.addPost();
+                props.addPostActionCreator();
                 setPostText('');
             }
         }
     };
 
-    const postItems = props.postData.map((p) => <Post message={p.message} likes={p.likes}/>);
+    const postItems = props.postData.map((p,i) => <Post key={i} message={p.message} likes={p.likes}/>);
 
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        setPostText(e.currentTarget.value)
-        if (postText) {
-            props.changePostState(postText)
+       setPostText(e.currentTarget.value)
+        if (e.currentTarget.value) {
+            props.changePostStateActionCreator((e.currentTarget.value))
         }
     };
 
