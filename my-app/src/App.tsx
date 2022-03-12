@@ -3,7 +3,7 @@ import './App.css';
 import {Header} from "./components/Header/Header";
 import {NavBar} from './components/NavBar/NavBar';
 import {Profile} from './components/Profile/Profile';
-import { Route, Routes} from 'react-router-dom';
+import { Route, Routes, useParams} from 'react-router-dom';
 import { News } from './components/News/News';
 import { Music } from './components/Music/Music';
 import { Settings } from './components/Settings/Settings';
@@ -12,6 +12,7 @@ import {AppStateType } from './redux/reduxState';
 import { DialogsContainer } from './components/Dialogs/DialogsContainer';
 import { UsersContainer } from './components/Users/UsersContainer';
 import {ProfileContainerC} from './components/Profile/ProfileContainer';
+import { UrlComponent } from './components/Profile/UrlComponents/UrlComponents';
 
 
 type appPropsType={
@@ -28,9 +29,8 @@ function App({state,
                 <NavBar/>
                 <div className="app-wrapper-content">
                     <Routes>
-                        <Route path="/profile/*" element={<ProfileContainerC
-                            //store={store}
-                        />}/>
+
+                            <Route path="/profile/:userId" element={<ProfileContainerC/>}>  </Route>
                         <Route path="/messages/*" element={<DialogsContainer
                             //store={store}
                             //dialogsPageData={state.dialogsPage} addMessage={store.dispatch.bind(state)}

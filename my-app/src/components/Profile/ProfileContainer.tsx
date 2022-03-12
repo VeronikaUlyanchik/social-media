@@ -1,59 +1,70 @@
 import axios from 'axios';
 import React from 'react';
 import {connect} from 'react-redux';
-import { setProfileUserAC } from '../../redux/profile-reducer';
+import {useParams} from 'react-router-dom';
+import {setProfileUserAC} from '../../redux/profile-reducer';
 import {AppStateType} from '../../redux/reduxState';
 import {MyPostsContainer} from './MyPosts/MyPostsContainer';
-import { Profile } from './Profile';
+import {Profile} from './Profile';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
+import {
+    useEffect
+} from "react";
 
-export type APIUserType ={
-    aboutMe: string
+export type APIUserType = {
+    aboutMe: string | null
     contacts: {
-        facebook: string
-        website: null,
-        vk: string
-        twitter: string
-        instagram: string
-        youtube: null,
-        github: string
-        mainLink: null
+        facebook: string | null
+        website: string | null
+        vk: string | null
+        twitter: string | null
+        instagram: string | null
+        youtube: string | null
+        github: string | null
+        mainLink: string | null
     },
-    lookingForAJob: true
-    lookingForAJobDescription: string
-    fullName:string
+    lookingForAJob: boolean
+    lookingForAJobDescription: string | null
+    fullName: string | null
     userId: number
     photos: {
-        small:string
-        large: string
+        small: string | null
+        large: string | null
     }
 }
 type MapStateToPropsType = {
-    profile:APIUserType
+    profile: APIUserType
 };
 export type mapDispatchToPropsType = {
-    setProfileUserAC: ( profile:APIUserType) => void
+    setProfileUserAC: (profile: APIUserType) => void
 };
 
 export type ProfilePropsType = MapStateToPropsType & mapDispatchToPropsType;
 
-class ProfileContainer extends React.Component<ProfilePropsType>{
-    componentDidMount(){
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`).then(response => {
-            this.props.setProfileUserAC(response.data)
-        })
-    }
-    render() {
+const ProfileContainer: React.FC<ProfilePropsType> = (props) => {
+
+    let { userId } = useParams();
+
+        useEffect(() => {
+            console.log(userId)
+                axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => {
+                    props.setProfileUserAC(response.data)
+                })
+            }, []
+        )
+
+
         return (
-            <Profile state = {this.props.profile}/>
+            <Profile state={props.profile}/>
         )
     }
-};
+;
 
-const mapStateToProps=(state:AppStateType)=> ({
-    profile:state.profilePage.profile
+const mapStateToProps = (state: AppStateType) => ({
+    profile: state.profilePage.profile,
+
 })
 
-export const ProfileContainerC = connect(mapStateToProps,{setProfileUserAC})(ProfileContainer)
+export const ProfileContainerC = connect(mapStateToProps, {setProfileUserAC})(ProfileContainer)
 
 
