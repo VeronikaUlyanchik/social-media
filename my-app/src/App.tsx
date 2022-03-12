@@ -11,6 +11,7 @@ import { stateType} from "./redux/state";
 import {AppStateType } from './redux/reduxState';
 import { DialogsContainer } from './components/Dialogs/DialogsContainer';
 import { UsersContainer } from './components/Users/UsersContainer';
+import {ProfileContainerC} from './components/Profile/ProfileContainer';
 
 
 type appPropsType={
@@ -27,7 +28,7 @@ function App({state,
                 <NavBar/>
                 <div className="app-wrapper-content">
                     <Routes>
-                        <Route path="/profile" element={<Profile
+                        <Route path="/profile/*" element={<ProfileContainerC
                             //store={store}
                         />}/>
                         <Route path="/messages/*" element={<DialogsContainer

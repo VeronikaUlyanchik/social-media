@@ -2,6 +2,7 @@ import React from 'react';
 import {UsersPropsType} from './UsersContainer';
 import s from './users.module.css';
 import { UserType } from '../../redux/users-reducer';
+import { NavLink } from 'react-router-dom';
 
 export type UsersType = {
     users: Array<UserType>
@@ -27,9 +28,9 @@ export const Users = (props: UsersType) => {
                 className={props.currentPage === p ? s.currenPage : ''}
                 onClick={() => props.changeCurrentPage(p)}> {p} </span>)}</div>
             {props.users.map(u => <div className={s.container}>
-                    <span><img
+                    <NavLink to={`/profile/${u.id}`} ><img
                         src={u.photos.small ? u.photos.small : 'https://i0.wp.com/www.cssscript.com/wp-content/uploads/2020/12/Customizable-SVG-Avatar-Generator-In-JavaScript-Avataaars.js.png?fit=438%2C408&ssl=1'}
-                        className={s.avatar}/></span>
+                        className={s.avatar}/></NavLink>
                 <span>{u.name} </span>
                 <div>{u.status}</div>
                 {u.followed

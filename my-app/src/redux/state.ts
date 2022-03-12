@@ -19,6 +19,7 @@ type postsDataType = {
 export type profilePageStateType = {
     postData: Array<postsDataType>
     newPostText: string
+    profile: any
 };
 export type dialogsPageStateType = {
     dialogs: Array<dialogsDataArrayType>
@@ -43,48 +44,48 @@ export type dispatchActionType ={
 }
 
 
-export const store:storeType = {
-    _state: {
-        dialogsPage: {
-            dialogs: [
-                {name: 'Egor', id: 1},
-                {name: 'Vova', id: 2},
-                {name: 'Igor', id: 3},
-                {name: 'Olya', id: 4},
-                {name: 'Lera', id: 5},
-            ],
-            messages: [
-                {id: 1, message: "Hello",},
-                {id: 2, message: "How are you?"},
-                {id: 3, message: "I like reading"},
-                {id: 4, message: "What are you doing?"},
-                {id: 5, message: "Please"},
-            ],
-            newMessageBody: ''
-        },
-        profilePage: {
-            postData: [
-                {id: 1, message: "Hello", likes: 10},
-                {id: 2, message: "How r u?", likes: 22},
-                {id: 3, message: "Hi", likes: 12},
-                {id: 4, message: "Yes", likes: 15},
-            ],
-            newPostText: ''
-        },
-    },
-    getState() {
-        return this._state
-    },
-    _callSubscriber(state: stateType) {
-        console.log('render')
-    },
-    dispatch(action) {
-        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
-        this._state.profilePage = profileReducer(this._state.profilePage, action);
-        this._callSubscriber(this._state)
-    },
-    observer(subscriber: ((state: stateType) => void)) {
-        this._callSubscriber = subscriber;
-    }
-}
+// export const store:storeType = {
+//     _state: {
+//         dialogsPage: {
+//             dialogs: [
+//                 {name: 'Egor', id: 1},
+//                 {name: 'Vova', id: 2},
+//                 {name: 'Igor', id: 3},
+//                 {name: 'Olya', id: 4},
+//                 {name: 'Lera', id: 5},
+//             ],
+//             messages: [
+//                 {id: 1, message: "Hello",},
+//                 {id: 2, message: "How are you?"},
+//                 {id: 3, message: "I like reading"},
+//                 {id: 4, message: "What are you doing?"},
+//                 {id: 5, message: "Please"},
+//             ],
+//             newMessageBody: ''
+//         },
+//         profilePage: {
+//             postData: [
+//                 {id: 1, message: "Hello", likes: 10},
+//                 {id: 2, message: "How r u?", likes: 22},
+//                 {id: 3, message: "Hi", likes: 12},
+//                 {id: 4, message: "Yes", likes: 15},
+//             ],
+//             newPostText: ''
+//         },
+//     },
+//     getState() {
+//         return this._state
+//     },
+//     _callSubscriber(state: stateType) {
+//         console.log('render')
+//     },
+//     dispatch(action) {
+//         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+//         this._state.profilePage = profileReducer(this._state.profilePage, action);
+//         this._callSubscriber(this._state)
+//     },
+//     observer(subscriber: ((state: stateType) => void)) {
+//         this._callSubscriber = subscriber;
+//     }
+// }
 

@@ -1,18 +1,18 @@
 import React from 'react';
 import { AppStateType } from '../../redux/reduxState';
 import { MyPostsContainer } from './MyPosts/MyPostsContainer';
+import { APIUserType } from './ProfileContainer';
 import { ProfileInfo } from './ProfileInfo/ProfileInfo';
 
 type profilePropsType={
-    store?: AppStateType
+    state?: APIUserType
 }
 
-export const Profile:React.FC<profilePropsType> =({store,...props})=>{
+export const Profile:React.FC<profilePropsType> =({state,...props})=>{
     return (
         <div>
-            <ProfileInfo />
-           <MyPostsContainer           // store={store}
-           />
+            <ProfileInfo state={state}/>
+           <MyPostsContainer />
         </div>
     )
 }

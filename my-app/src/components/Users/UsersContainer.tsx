@@ -15,6 +15,7 @@ import {Dispatch} from 'redux';
 import axios from 'axios';
 import s from './users.module.css';
 import {Users} from './Users';
+import { Preloader } from '../Preloader/Preloader';
 
 
 type MapStateToPropsType = {
@@ -59,7 +60,7 @@ class UsersAPIContainer extends React.Component<UsersPropsType> {
 
     render() {
         return <>
-            {this.props.isFetching && <div className={s.loader}></div>}
+            {this.props.isFetching && <Preloader/>}
             <Users users={this.props.users} usersCount={this.props.usersCount} numberOnPage={this.props.numberOnPage}
                    currentPage={this.props.currentPage} changeCurrentPage={this.changeCurrentPage}
                    follow={this.props.followAC}
