@@ -9,7 +9,7 @@ export const NavBar:React.FC = () => {
             {/*className в новом синтаксисе может принимать не только строку, но и функцию, а в функции в качестве аргумента объект, через деструктуризацию мы заберем из него isActive свойство*/}
             <div className={classes.item}><NavLink
                 className={({isActive})=>isActive ? classes.activeLink : classes.item}
-                to="/profile">Profile</NavLink></div>
+                to="/profile/2">Profile</NavLink></div>
             <div className={classes.item}><NavLink
                 className={({isActive})=>isActive ? classes.activeLink : classes.item}
                 to="/messages">Messages</NavLink></div>

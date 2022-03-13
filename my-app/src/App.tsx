@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import {Header} from "./components/Header/Header";
 import {NavBar} from './components/NavBar/NavBar';
-import {Profile} from './components/Profile/Profile';
 import { Route, Routes, useParams} from 'react-router-dom';
 import { News } from './components/News/News';
 import { Music } from './components/Music/Music';
@@ -12,7 +11,6 @@ import {AppStateType } from './redux/reduxState';
 import { DialogsContainer } from './components/Dialogs/DialogsContainer';
 import { UsersContainer } from './components/Users/UsersContainer';
 import {ProfileContainerC} from './components/Profile/ProfileContainer';
-import { UrlComponent } from './components/Profile/UrlComponents/UrlComponents';
 
 
 type appPropsType={
