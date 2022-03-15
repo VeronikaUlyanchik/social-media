@@ -11,6 +11,7 @@ import {AppStateType } from './redux/reduxState';
 import { DialogsContainer } from './components/Dialogs/DialogsContainer';
 import { UsersContainer } from './components/Users/UsersContainer';
 import {ProfileContainerC} from './components/Profile/ProfileContainer';
+import { HeaderContainer } from './components/Header/HeaderContainer';
 
 
 type appPropsType={
@@ -23,7 +24,7 @@ function App({state,
                  ...props}:appPropsType) {
     return (
             <div className="app-wrapper">
-                <Header/>
+                <HeaderContainer/>
                 <NavBar/>
                 <div className="app-wrapper-content">
                     <Routes>

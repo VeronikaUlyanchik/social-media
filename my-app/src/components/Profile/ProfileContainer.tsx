@@ -52,7 +52,7 @@ const ProfileContainer: React.FC<ProfilePropsType> = (props) => {
                 axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => {
                     props.setProfileUserAC(response.data)
                 })
-            }, []
+            }, [userId]
         )
 
 

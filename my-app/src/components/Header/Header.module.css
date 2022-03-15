@@ -1,6 +1,9 @@
 .header{
     grid-area: h;
     background: aquamarine;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
 }
 .header img{
     width: 100px;
