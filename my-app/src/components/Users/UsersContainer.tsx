@@ -40,9 +40,13 @@ class UsersAPIContainer extends React.Component<UsersPropsType> {
     //     super(props)
     // }
 
+
     componentDidMount() {
+        console.log('fhujds')
         this.props.toggleIsFetchingAC(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.numberOnPage}`).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.numberOnPage}`, {
+            withCredentials: true,
+        }).then(response => {
             this.props.setUsersAC(response.data.items)
             this.props.toggleIsFetchingAC(false)
             this.props.setTotalUsersCountAC(response.data.totalCount)
@@ -52,9 +56,36 @@ class UsersAPIContainer extends React.Component<UsersPropsType> {
     changeCurrentPage = (page: number) => {
         this.props.toggleIsFetchingAC(true)
         this.props.setCurrentPageAC(page)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.numberOnPage}`).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.numberOnPage}` , {
+            withCredentials: true,
+        }).then(response => {
             this.props.toggleIsFetchingAC(false)
             this.props.setUsersAC(response.data.items)
+        })
+    }
+   follow = (userId: number) => {
+       axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {},{
+           withCredentials: true,
+           headers: {
+              'API-KEY': '38b440c3-480d-4d4e-a2c9-675a400878f3'
+           }
+       } ).then(response => {
+           if (response.data.resultCode==0) {
+               this.props.followAC(userId)
+           }
+       })
+    }
+    unfollow = (userId: number) => {
+        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {
+            withCredentials: true,
+            headers: {
+                'API-KEY': '38b440c3-480d-4d4e-a2c9-675a400878f3'
+            }
+        }).then(response => {
+            console.log(response)
+            if (response.data.resultCode==0) {
+                this.props.unfollowAC(userId)
+            }
         })
     }
 
@@ -63,8 +94,8 @@ class UsersAPIContainer extends React.Component<UsersPropsType> {
             {this.props.isFetching && <Preloader/>}
             <Users users={this.props.users} usersCount={this.props.usersCount} numberOnPage={this.props.numberOnPage}
                    currentPage={this.props.currentPage} changeCurrentPage={this.changeCurrentPage}
-                   follow={this.props.followAC}
-                   unfollow={this.props.unfollowAC}/>
+                   follow={this.follow}
+                   unfollow={this.unfollow}/>
         </>
     }
 };

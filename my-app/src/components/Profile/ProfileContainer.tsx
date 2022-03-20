@@ -49,7 +49,9 @@ const ProfileContainer: React.FC<ProfilePropsType> = (props) => {
             if (!userId) {
                 userId='2';
             }
-                axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => {
+                axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`, {
+                    withCredentials: true,
+                }).then(response => {
                     props.setProfileUserAC(response.data)
                 })
             }, [userId]
