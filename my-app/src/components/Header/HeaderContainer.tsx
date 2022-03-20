@@ -5,6 +5,7 @@ import {useEffect} from "react";
 import { AppStateType } from '../../redux/reduxState';
 import axios from 'axios';
 import { setUserAuthAC } from '../../redux/auth-reducer';
+import { authAPI } from '../../api/api';
 
 export const HeaderContainer = (props: any) => {
 
@@ -12,9 +13,9 @@ export const HeaderContainer = (props: any) => {
     const {isAuth , login , id} = useSelector((state:AppStateType)=>state.auth)
 
     useEffect(()=> {
-        axios.get('https://social-network.samuraijs.com/api/1.0/auth/me', {withCredentials: true} ).then((response)=> {
-            if (response.data.resultCode === 0) {
-                dispatch(setUserAuthAC(response.data.data))
+        authAPI.authMe().then((res)=> {
+            if (res.resultCode === 0) {
+                dispatch(setUserAuthAC(res.data))
             }
         })
     },[])
