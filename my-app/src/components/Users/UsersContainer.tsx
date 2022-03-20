@@ -7,6 +7,7 @@ import {
     setTotalUsersCountAC,
     setUsersAC,
     toggleIsFetchingAC,
+    toggleIsFollowingProcessAC,
     unfollowAC,
     UsersStateType,
     UserType
@@ -15,8 +16,8 @@ import {Dispatch} from 'redux';
 import axios from 'axios';
 import s from './users.module.css';
 import {Users} from './Users';
-import { Preloader } from '../Preloader/Preloader';
-import { followAPI, userAPI } from '../../api/api';
+import {Preloader} from '../Preloader/Preloader';
+import {followAPI, userAPI} from '../../api/api';
 
 
 type MapStateToPropsType = {
@@ -25,6 +26,7 @@ type MapStateToPropsType = {
     numberOnPage: number
     usersCount: number
     isFetching: boolean
+    userInFollowingProcess: number[]
 };
 export type mapDispatchToPropsType = {
     followAC: (userId: number) => void
@@ -33,6 +35,7 @@ export type mapDispatchToPropsType = {
     setCurrentPageAC: (currentPage: number) => void
     setTotalUsersCountAC: (totalUsers: number) => void
     toggleIsFetchingAC: (isFetching: boolean) => void
+    toggleIsFollowingProcessAC: (isFetching: boolean, userId: number) => void
 };
 export type UsersPropsType = MapStateToPropsType & mapDispatchToPropsType;
 
@@ -44,33 +47,37 @@ class UsersAPIContainer extends React.Component<UsersPropsType> {
 
     componentDidMount() {
         this.props.toggleIsFetchingAC(true)
-        userAPI.getUsers(this.props.currentPage,this.props.numberOnPage )
+        userAPI.getUsers(this.props.currentPage, this.props.numberOnPage)
             .then(response => {
-            this.props.setUsersAC(response.items)
-            this.props.toggleIsFetchingAC(false)
-            this.props.setTotalUsersCountAC(response.totalCount)
-        })
+                this.props.setUsersAC(response.items)
+                this.props.toggleIsFetchingAC(false)
+                this.props.setTotalUsersCountAC(response.totalCount)
+            })
     }
 
     changeCurrentPage = (page: number) => {
         this.props.toggleIsFetchingAC(true)
         this.props.setCurrentPageAC(page)
-        userAPI.getUsers(page,this.props.numberOnPage ).then(response => {
+        userAPI.getUsers(page, this.props.numberOnPage).then(response => {
             this.props.toggleIsFetchingAC(false)
             this.props.setUsersAC(response.data.items)
         })
     }
-   follow = (userId: number) => {
-       followAPI.follow(userId).then(response => {
-           if (response.resultCode==0) {
-               this.props.followAC(userId)
-           }
-       })
+    follow = (userId: number) => {
+        this.props.toggleIsFollowingProcessAC(true, userId)
+        followAPI.follow(userId).then(response => {
+            if (response.resultCode == 0) {
+                this.props.followAC(userId)
+                this.props.toggleIsFollowingProcessAC(false, userId)
+            }
+        })
     }
     unfollow = (userId: number) => {
+        this.props.toggleIsFollowingProcessAC(true, userId)
         followAPI.unfollow(userId).then(response => {
-            if (response.resultCode==0) {
+            if (response.resultCode == 0) {
                 this.props.unfollowAC(userId)
+                this.props.toggleIsFollowingProcessAC(false, userId)
             }
         })
     }
@@ -81,7 +88,9 @@ class UsersAPIContainer extends React.Component<UsersPropsType> {
             <Users users={this.props.users} usersCount={this.props.usersCount} numberOnPage={this.props.numberOnPage}
                    currentPage={this.props.currentPage} changeCurrentPage={this.changeCurrentPage}
                    follow={this.follow}
-                   unfollow={this.unfollow}/>
+                   unfollow={this.unfollow}
+                   userInFollowingProcess={this.props.userInFollowingProcess}
+            />
         </>
     }
 };
@@ -92,6 +101,7 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         numberOnPage: state.usersPage.numberOnPage,
         usersCount: state.usersPage.usersCount,
         isFetching: state.usersPage.isFetching,
+        userInFollowingProcess: state.usersPage.userInFollowingProcess
     }
 }
 // const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
@@ -124,5 +134,6 @@ export const UsersContainer = connect(mapStateToProps, {
     setUsersAC,
     setCurrentPageAC,
     setTotalUsersCountAC,
-    toggleIsFetchingAC
+    toggleIsFetchingAC,
+    toggleIsFollowingProcessAC,
 })(UsersAPIContainer)

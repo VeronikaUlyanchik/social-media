@@ -12,6 +12,7 @@ export type UsersType = {
     changeCurrentPage: (currentPage: number) => void
     follow: (userId: number) => void
     unfollow: (userId: number) => void
+    userInFollowingProcess: number[]
 }
 
 export const Users = (props: UsersType) => {
@@ -34,8 +35,8 @@ export const Users = (props: UsersType) => {
                 <span>{u.name} </span>
                 <div>{u.status}</div>
                 {u.followed
-                    ? <button onClick={() => props.unfollow(u.id)}> UNFOLLOW </button>
-                    : <button onClick={() => props.follow(u.id)}> FOLLOW </button>}
+                    ? <button disabled={props.userInFollowingProcess.some(i=> i=== u.id)} onClick={() => props.unfollow(u.id)}> UNFOLLOW </button>
+                    : <button disabled={props.userInFollowingProcess.some(i=> i=== u.id)} onClick={() => props.follow(u.id)}> FOLLOW </button>}
                 <hr/>
             </div>)}
         </div>
