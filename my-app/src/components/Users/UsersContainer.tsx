@@ -10,7 +10,10 @@ import {
     toggleIsFollowingProcessAC,
     unfollowAC,
     UsersStateType,
-    UserType
+    UserType,
+    getUsers,
+    follow,
+    unfollow
 } from '../../redux/users-reducer';
 import {Dispatch} from 'redux';
 import axios from 'axios';
@@ -18,6 +21,7 @@ import s from './users.module.css';
 import {Users} from './Users';
 import {Preloader} from '../Preloader/Preloader';
 import {followAPI, userAPI} from '../../api/api';
+import { dispatchActionType } from '../../redux/state';
 
 
 type MapStateToPropsType = {
@@ -29,13 +33,12 @@ type MapStateToPropsType = {
     userInFollowingProcess: number[]
 };
 export type mapDispatchToPropsType = {
-    followAC: (userId: number) => void
-    unfollowAC: (userId: number) => void
-    setUsersAC: (state: Array<UserType>) => void
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
     setCurrentPageAC: (currentPage: number) => void
     setTotalUsersCountAC: (totalUsers: number) => void
     toggleIsFetchingAC: (isFetching: boolean) => void
-    toggleIsFollowingProcessAC: (isFetching: boolean, userId: number) => void
+    getUsers: (currentPage: number,numberOnPage: number ) => void
 };
 export type UsersPropsType = MapStateToPropsType & mapDispatchToPropsType;
 
@@ -46,43 +49,22 @@ class UsersAPIContainer extends React.Component<UsersPropsType> {
 
 
     componentDidMount() {
-        this.props.toggleIsFetchingAC(true)
-        userAPI.getUsers(this.props.currentPage, this.props.numberOnPage)
-            .then(response => {
-                this.props.setUsersAC(response.items)
-                this.props.toggleIsFetchingAC(false)
-                this.props.setTotalUsersCountAC(response.totalCount)
-            })
+       this.props.getUsers(this.props.currentPage, this.props.numberOnPage)
     }
 
     changeCurrentPage = (page: number) => {
-        this.props.toggleIsFetchingAC(true)
-        this.props.setCurrentPageAC(page)
-        userAPI.getUsers(page, this.props.numberOnPage).then(response => {
-            this.props.toggleIsFetchingAC(false)
-            this.props.setUsersAC(response.data.items)
-        })
+        console.log(page)
+        this.props.getUsers(page, this.props.numberOnPage)
     }
     follow = (userId: number) => {
-        this.props.toggleIsFollowingProcessAC(true, userId)
-        followAPI.follow(userId).then(response => {
-            if (response.resultCode == 0) {
-                this.props.followAC(userId)
-                this.props.toggleIsFollowingProcessAC(false, userId)
-            }
-        })
+        this.props.follow(userId);
     }
     unfollow = (userId: number) => {
-        this.props.toggleIsFollowingProcessAC(true, userId)
-        followAPI.unfollow(userId).then(response => {
-            if (response.resultCode == 0) {
-                this.props.unfollowAC(userId)
-                this.props.toggleIsFollowingProcessAC(false, userId)
-            }
-        })
+        this.props.unfollow(userId);
     }
 
     render() {
+        console.log(this.props.currentPage)
         return <>
             {this.props.isFetching && <Preloader/>}
             <Users users={this.props.users} usersCount={this.props.usersCount} numberOnPage={this.props.numberOnPage}
@@ -129,11 +111,10 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 
 
 export const UsersContainer = connect(mapStateToProps, {
-    followAC,
-    unfollowAC,
-    setUsersAC,
     setCurrentPageAC,
     setTotalUsersCountAC,
     toggleIsFetchingAC,
-    toggleIsFollowingProcessAC,
+    getUsers,
+    follow,
+    unfollow
 })(UsersAPIContainer)

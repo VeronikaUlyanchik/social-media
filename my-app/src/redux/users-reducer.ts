@@ -1,3 +1,4 @@
+import {followAPI, userAPI } from "../api/api";
 import {dispatchActionType} from "./state";
 
 const FOLLOW = 'FOLLOW';
@@ -92,3 +93,42 @@ export const setCurrentPageAC = (currentPage: number) => ({type: SET_CURRENT_PAG
 export const setTotalUsersCountAC = (totalUsers: number) => ({type: SET_TOTAL_USERS_COUNT, totalUsers}) as const;
 export const toggleIsFetchingAC = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching}) as const;
 export const toggleIsFollowingProcessAC = (isFetching: boolean, userId: number) => ({type: TOGGLE_IS_F0LLOWING, isFetching , userId}) as const;
+
+
+//thunks
+export const getUsers = (currentPage: number,numberOnPage: number ) => {
+    return (dispatch: (action: dispatchActionType) => void) => {
+        dispatch(toggleIsFetchingAC(true))
+        userAPI.getUsers(currentPage, numberOnPage)
+            .then(response => {
+                dispatch(setCurrentPageAC(currentPage))
+                dispatch(setUsersAC(response.items))
+                dispatch(toggleIsFetchingAC(false))
+                dispatch(setTotalUsersCountAC(response.totalCount))
+            })
+    }
+};
+
+export const follow = (userId: number ) => {
+    return (dispatch: (action: dispatchActionType) => void) => {
+        dispatch(toggleIsFollowingProcessAC(true, userId))
+        followAPI.follow(userId).then(response => {
+            if (response.resultCode == 0) {
+                dispatch(followAC(userId))
+                dispatch(toggleIsFollowingProcessAC(false, userId))
+            }
+        })
+    }
+};
+
+export const unfollow = (userId: number ) => {
+    return (dispatch: (action: dispatchActionType) => void) => {
+        dispatch(toggleIsFollowingProcessAC(true, userId))
+        followAPI.unfollow(userId).then(response => {
+            if (response.resultCode == 0) {
+                dispatch(unfollowAC(userId))
+                dispatch(toggleIsFollowingProcessAC(false, userId))
+            }
+        })
+    }
+};

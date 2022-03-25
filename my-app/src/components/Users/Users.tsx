@@ -26,7 +26,7 @@ export const Users = (props: UsersType) => {
     return (
         <div>
             <div> {pages.map(p => <span
-                className={props.currentPage === p ? s.currenPage : ''}
+                className={props.currentPage === p ? s.currentPage : ''}
                 onClick={() => props.changeCurrentPage(p)}> {p} </span>)}</div>
             {props.users.map(u => <div className={s.container}>
                     <NavLink to={`/profile/${u.id}`} ><img

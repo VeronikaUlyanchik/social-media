@@ -40,7 +40,7 @@ export type storeType= {
 }
 export type dispatchActionType ={
     type: string
-    [key: string] : string
+    [key: string] : any
 }
 
 
