@@ -6,10 +6,12 @@ import {dialogsPageStateType, dispatchActionType, stateType} from "../../redux/s
 import {addMessageActionCreator, changeMessageStateActionCreator} from "../../redux/dialogs-reducer";
 import {Dialogs} from './Dialogs';
 import {connect} from 'react-redux';
+import { AppStateType } from '../../redux/reduxState';
 
-let mapStateToProps = (state:stateType) => {
+let mapStateToProps = (state:AppStateType) => {
     return {
-        dialogsPageData: state.dialogsPage
+        dialogsPageData: state.dialogsPage,
+        isAuth: state.auth.isAuth
     }
 }
 // let mapDispatchToProps = (dispatch:(action: dispatchActionType) => void) => {

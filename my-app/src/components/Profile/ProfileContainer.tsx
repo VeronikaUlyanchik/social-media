@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect, useDispatch} from 'react-redux';
-import {useParams} from 'react-router-dom';
+import {Navigate, useParams} from 'react-router-dom';
 import {getProfileUser} from '../../redux/profile-reducer';
 import {AppStateType} from '../../redux/reduxState';
 import {MyPostsContainer} from './MyPosts/MyPostsContainer';
@@ -9,7 +9,7 @@ import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 import {
     useEffect
 } from "react";
-import { userAPI } from '../../api/api';
+import {userAPI} from '../../api/api';
 
 export type APIUserType = {
     aboutMe: string | null
@@ -34,6 +34,7 @@ export type APIUserType = {
 }
 type MapStateToPropsType = {
     profile: APIUserType
+    isAuth: boolean
 };
 export type mapDispatchToPropsType = {
     getProfileUser: (userId: string) => void
@@ -43,13 +44,14 @@ export type ProfilePropsType = MapStateToPropsType & mapDispatchToPropsType;
 
 const ProfileContainer: React.FC<ProfilePropsType> = (props) => {
 
-    let { userId } = useParams();
+        let {userId} = useParams();
         useEffect(() => {
             if (!userId) {
-                userId='2';
+                userId = '2';
             }
-           props.getProfileUser(userId)
-            }, [userId])
+            props.getProfileUser(userId)
+        }, [userId])
+        if (!props.isAuth) return <Navigate to={'/login'}/>
         return (
             <Profile state={props.profile}/>
         )
@@ -58,7 +60,7 @@ const ProfileContainer: React.FC<ProfilePropsType> = (props) => {
 
 const mapStateToProps = (state: AppStateType) => ({
     profile: state.profilePage.profile,
-
+    isAuth: state.auth.isAuth
 })
 
 export const ProfileContainerC = connect(mapStateToProps, {getProfileUser})(ProfileContainer)

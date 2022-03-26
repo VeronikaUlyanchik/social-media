@@ -3,14 +3,14 @@ import classes from './Dialogs.module.css';
 import {DialogsItems} from "./DialogsItems/DialogsItems";
 import {MessagesItems} from "./Messages/Messages";
 import { dialogsPageStateType, dispatchActionType} from "../../redux/state";
-import {addMessageActionCreator, changeMessageStateActionCreator} from "../../redux/dialogs-reducer";
+import { Navigate } from 'react-router-dom';
 
 
 type dialogsPropsType={
     dialogsPageData:dialogsPageStateType
     changeMessageStateActionCreator: (text:string) => void
     addMessageActionCreator: () => void
-
+    isAuth: boolean
 }
 
 export const Dialogs:React.FC<dialogsPropsType> = ({dialogsPageData,changeMessageStateActionCreator,...props}) => {
@@ -32,6 +32,7 @@ export const Dialogs:React.FC<dialogsPropsType> = ({dialogsPageData,changeMessag
         let text = e.currentTarget.value
         changeMessageStateActionCreator(text)
     }
+    if (!props.isAuth) return <Navigate to={'/login'}/>
     return (
         <div className={classes.dialogsContent}>
             <div className={classes.dialogsItems}>
