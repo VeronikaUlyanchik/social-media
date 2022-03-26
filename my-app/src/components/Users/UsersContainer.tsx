@@ -53,7 +53,6 @@ class UsersAPIContainer extends React.Component<UsersPropsType> {
     }
 
     changeCurrentPage = (page: number) => {
-        console.log(page)
         this.props.getUsers(page, this.props.numberOnPage)
     }
     follow = (userId: number) => {

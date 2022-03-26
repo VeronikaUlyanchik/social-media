@@ -28,4 +28,7 @@ export const userAPI = {
     getUsers(currentPage=1, numberOnPage=10) {
         return instance.get(`users?page=${currentPage}&count=${numberOnPage}`).then(res => res.data)
     },
+    getProfile(userId: string) {
+        return instance.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+    }
 };

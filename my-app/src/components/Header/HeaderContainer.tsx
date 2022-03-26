@@ -1,24 +1,21 @@
 import React from 'react';
-import { Header } from './Header';
+import {Header} from './Header';
 import {connect, useDispatch, useSelector} from 'react-redux';
 import {useEffect} from "react";
-import { AppStateType } from '../../redux/reduxState';
+import {AppStateType} from '../../redux/reduxState';
 import axios from 'axios';
-import { setUserAuthAC } from '../../redux/auth-reducer';
-import { authAPI } from '../../api/api';
+import {getUserAuthData} from '../../redux/auth-reducer';
+import {authAPI} from '../../api/api';
 
-export const HeaderContainer = (props: any) => {
+export const HeaderContainer = () => {
 
     const dispatch = useDispatch();
-    const {isAuth , login , id} = useSelector((state:AppStateType)=>state.auth)
+    useEffect(() => {
+        dispatch(getUserAuthData())
+    }, [])
 
-    useEffect(()=> {
-        authAPI.authMe().then((res)=> {
-            if (res.resultCode === 0) {
-                dispatch(setUserAuthAC(res.data))
-            }
-        })
-    },[])
+    const {isAuth, login, id} = useSelector((state: AppStateType) => state.auth)
+
 
     return <Header login={login} isAuth={isAuth}/>
 }

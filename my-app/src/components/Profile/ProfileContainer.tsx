@@ -1,8 +1,7 @@
-import axios from 'axios';
 import React from 'react';
-import {connect} from 'react-redux';
+import {connect, useDispatch} from 'react-redux';
 import {useParams} from 'react-router-dom';
-import {setProfileUserAC} from '../../redux/profile-reducer';
+import {getProfileUser} from '../../redux/profile-reducer';
 import {AppStateType} from '../../redux/reduxState';
 import {MyPostsContainer} from './MyPosts/MyPostsContainer';
 import {Profile} from './Profile';
@@ -10,6 +9,7 @@ import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 import {
     useEffect
 } from "react";
+import { userAPI } from '../../api/api';
 
 export type APIUserType = {
     aboutMe: string | null
@@ -36,7 +36,7 @@ type MapStateToPropsType = {
     profile: APIUserType
 };
 export type mapDispatchToPropsType = {
-    setProfileUserAC: (profile: APIUserType) => void
+    getProfileUser: (userId: string) => void
 };
 
 export type ProfilePropsType = MapStateToPropsType & mapDispatchToPropsType;
@@ -44,20 +44,12 @@ export type ProfilePropsType = MapStateToPropsType & mapDispatchToPropsType;
 const ProfileContainer: React.FC<ProfilePropsType> = (props) => {
 
     let { userId } = useParams();
-
         useEffect(() => {
             if (!userId) {
                 userId='2';
             }
-                axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`, {
-                    withCredentials: true,
-                }).then(response => {
-                    props.setProfileUserAC(response.data)
-                })
-            }, [userId]
-        )
-
-
+           props.getProfileUser(userId)
+            }, [userId])
         return (
             <Profile state={props.profile}/>
         )
@@ -69,6 +61,6 @@ const mapStateToProps = (state: AppStateType) => ({
 
 })
 
-export const ProfileContainerC = connect(mapStateToProps, {setProfileUserAC})(ProfileContainer)
+export const ProfileContainerC = connect(mapStateToProps, {getProfileUser})(ProfileContainer)
 
 

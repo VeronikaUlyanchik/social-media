@@ -1,3 +1,4 @@
+import { userAPI } from "../api/api";
 import {postsDataType} from "../components/Profile/MyPosts/MyPosts";
 import {dispatchActionType, profilePageStateType} from "./state";
 
@@ -38,4 +39,9 @@ export const profileReducer = (state: profilePageStateType = initialState, actio
 
 export const addPostActionCreator = () => ({type: ADD_POST});
 export const changePostStateActionCreator = (text: string) => ({type: CHANGE_POST_STATE, text});
-export const setProfileUserAC = (profile: any) => ({type:SET_PROFILE_USER, profile});
+const setProfileUserAC = (profile: any) => ({type:SET_PROFILE_USER, profile});
+export const getProfileUser = (userId:string) => (dispatch: (action: dispatchActionType) => void) => {
+    userAPI.getProfile(userId).then(response => {
+        dispatch(setProfileUserAC(response.data))
+    })
+};

@@ -1,4 +1,6 @@
 import React from 'react';
+import { authAPI } from '../api/api';
+import { dispatchActionType } from './state';
 
 const SET_USER_AUTH = 'SET_USER_AUTH';
 
@@ -19,7 +21,6 @@ const initialState: AuthStateType = {
 export const authReducer = (state :AuthStateType = initialState, action: setUserAuthACType ):AuthStateType => {
         switch (action.type) {
             case "SET_USER_AUTH":
-                debugger
                 return {
                     ...state,
                     ...action.data,
@@ -33,4 +34,13 @@ export const authReducer = (state :AuthStateType = initialState, action: setUser
 export type setUserAuthACType = ReturnType<typeof setUserAuthAC>;
 
 
-export const setUserAuthAC = (data: AuthStateType) => ({type: SET_USER_AUTH, data: data})
+const setUserAuthAC = (data: AuthStateType) => ({type: SET_USER_AUTH, data: data})
+export const getUserAuthData = () => {
+    return (dispatch: (action: dispatchActionType) => void) => {
+        authAPI.authMe().then((res)=> {
+            if (res.resultCode === 0) {
+                dispatch(setUserAuthAC(res.data))
+            }
+        })
+    }
+}
