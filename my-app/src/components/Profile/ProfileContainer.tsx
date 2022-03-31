@@ -10,6 +10,7 @@ import {
     useEffect
 } from "react";
 import {userAPI} from '../../api/api';
+import { WithAuthRedirectComponent } from '../../hoc/withAuthRedirectComponent';
 
 export type APIUserType = {
     aboutMe: string | null
@@ -51,7 +52,6 @@ const ProfileContainer: React.FC<ProfilePropsType> = (props) => {
             }
             props.getProfileUser(userId)
         }, [userId])
-        if (!props.isAuth) return <Navigate to={'/login'}/>
         return (
             <Profile state={props.profile}/>
         )
@@ -60,9 +60,10 @@ const ProfileContainer: React.FC<ProfilePropsType> = (props) => {
 
 const mapStateToProps = (state: AppStateType) => ({
     profile: state.profilePage.profile,
-    isAuth: state.auth.isAuth
 })
 
-export const ProfileContainerC = connect(mapStateToProps, {getProfileUser})(ProfileContainer)
+const WithAuthRedirectComponentH = WithAuthRedirectComponent(ProfileContainer)
+
+export const ProfileContainerC = connect(mapStateToProps, {getProfileUser})(WithAuthRedirectComponentH)
 
 
