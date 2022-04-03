@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect, useDispatch} from 'react-redux';
 import {Navigate, useParams} from 'react-router-dom';
-import {getProfileUser} from '../../redux/profile-reducer';
+import {getProfileStatus, getProfileUser} from '../../redux/profile-reducer';
 import {AppStateType} from '../../redux/reduxState';
 import {MyPostsContainer} from './MyPosts/MyPostsContainer';
 import {Profile} from './Profile';
@@ -36,10 +36,11 @@ export type APIUserType = {
 }
 type MapStateToPropsType = {
     profile: APIUserType
-    isAuth: boolean
+    status:string
 };
 export type mapDispatchToPropsType = {
     getProfileUser: (userId: string) => void
+    getProfileStatus: (userId: string) => void
 };
 
 export type ProfilePropsType = MapStateToPropsType & mapDispatchToPropsType;
@@ -52,20 +53,22 @@ const ProfileContainer: React.FC<ProfilePropsType> = (props) => {
                 userId = '2';
             }
             props.getProfileUser(userId)
+            props.getProfileStatus(userId)
         }, [userId])
         return (
-            <Profile state={props.profile}/>
+            <Profile state={props.profile} status={props.status}/>
         )
     }
 ;
 
 const mapStateToProps = (state: AppStateType) => ({
     profile: state.profilePage.profile,
+    status: state.profilePage.status,
 })
 
 export const ProfileContainerC = compose(
     WithAuthRedirectComponent,
-    connect(mapStateToProps, {getProfileUser})
+    connect(mapStateToProps, {getProfileUser, getProfileStatus})
 )(ProfileContainer)
 
 

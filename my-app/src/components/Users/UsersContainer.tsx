@@ -63,7 +63,6 @@ class UsersAPIContainer extends React.Component<UsersPropsType> {
     }
 
     render() {
-        console.log(this.props.currentPage)
         return <>
             {this.props.isFetching && <Preloader/>}
             <Users users={this.props.users} usersCount={this.props.usersCount} numberOnPage={this.props.numberOnPage}

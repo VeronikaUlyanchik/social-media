@@ -19,7 +19,7 @@ export const Users = (props: UsersType) => {
     let page = Math.ceil(props.usersCount / props.numberOnPage);
     let pages = [];
     for (let i = 1; i <= page; i++) {
-        if (i < 21) {
+        if (i < 100) {
             pages.push(i)
         } else break
     }

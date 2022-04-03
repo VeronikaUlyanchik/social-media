@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3902cf3b-e0df-42e2-9dc9-1bd6b85ae9ac" name="Changes" comment="Second week (18-23 way)">
+      <change afterPath="$PROJECT_DIR$/my-app/src/components/Profile/ProfileInfo/ProfileStatus.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/components/Dialogs/Dialogs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Dialogs/Dialogs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/components/Dialogs/DialogsContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Dialogs/DialogsContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/components/Header/HeaderContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Header/HeaderContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/api/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/api/api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/Profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Profile/Profile.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-app/src/components/Profile/ProfileContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Profile/ProfileContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/Profile/ProfileInfo/ProfileInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Profile/ProfileInfo/ProfileInfo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/Users/Users.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Users/Users.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/Users/UsersContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Users/UsersContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/redux/profile-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/redux/profile-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/redux/state.ts" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/redux/state.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +22,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -142,7 +147,7 @@
       <workItem from="1648293167885" duration="6318000" />
       <workItem from="1648763142554" duration="1951000" />
       <workItem from="1648904577653" duration="128000" />
-      <workItem from="1648990366542" duration="1038000" />
+      <workItem from="1648990366542" duration="5202000" />
     </task>
     <task id="LOCAL-00001" summary="react added">
       <created>1641326383349</created>
