@@ -11,6 +11,7 @@ import {
 } from "react";
 import {userAPI} from '../../api/api';
 import { WithAuthRedirectComponent } from '../../hoc/withAuthRedirectComponent';
+import { compose } from 'redux';
 
 export type APIUserType = {
     aboutMe: string | null
@@ -62,8 +63,9 @@ const mapStateToProps = (state: AppStateType) => ({
     profile: state.profilePage.profile,
 })
 
-const WithAuthRedirectComponentH = WithAuthRedirectComponent(ProfileContainer)
-
-export const ProfileContainerC = connect(mapStateToProps, {getProfileUser})(WithAuthRedirectComponentH)
+export const ProfileContainerC = compose(
+    WithAuthRedirectComponent,
+    connect(mapStateToProps, {getProfileUser})
+)(ProfileContainer)
 
 

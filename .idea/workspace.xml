@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="3902cf3b-e0df-42e2-9dc9-1bd6b85ae9ac" name="Changes" comment="Second week (18-23 way)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/redux/dialogs-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/redux/dialogs-reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/redux/profile-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/redux/profile-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/Dialogs/Dialogs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Dialogs/Dialogs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/Dialogs/DialogsContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Dialogs/DialogsContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/Header/HeaderContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Header/HeaderContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/Profile/ProfileContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Profile/ProfileContainer.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,11 +66,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\it-incubator\social-media2\my-app\src\components\Dialogs" />
-      <recent name="C:\it-incubator\social-media2\my-app\src\components\Profile\MyPosts" />
+      <recent name="C:\it-incubator\social-media2\my-app\src\components\Profile" />
+      <recent name="C:\it-incubator\social-media2\my-app\src\components\Preloader" />
+      <recent name="C:\it-incubator\social-media2\my-app\src\components\Users" />
       <recent name="C:\it-incubator\social-media2\my-app\src\redux" />
-      <recent name="C:\it-incubator\social-media2\my-app\src\components\Profile\ProfileInfo" />
-      <recent name="C:\it-incubator\social-media2\my-app\src\components\Settings" />
+      <recent name="C:\it-incubator\social-media2\my-app\src\components\Dialogs" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\it-incubator\social-media2\my-app\src\components\Profile\MyPosts" />
@@ -118,7 +119,30 @@
       <workItem from="1645379163918" duration="6482000" />
       <workItem from="1645389293852" duration="4787000" />
       <workItem from="1645471923950" duration="25000" />
-      <workItem from="1645557087388" duration="8293000" />
+      <workItem from="1645557087388" duration="8753000" />
+      <workItem from="1645625706643" duration="419000" />
+      <workItem from="1645734846986" duration="4843000" />
+      <workItem from="1645809636214" duration="6674000" />
+      <workItem from="1646069811435" duration="7324000" />
+      <workItem from="1646160593841" duration="183000" />
+      <workItem from="1646753120363" duration="11986000" />
+      <workItem from="1646838326122" duration="44000" />
+      <workItem from="1646843566502" duration="29000" />
+      <workItem from="1647023623359" duration="7403000" />
+      <workItem from="1647099128990" duration="9318000" />
+      <workItem from="1647172783609" duration="2009000" />
+      <workItem from="1647294283557" duration="595000" />
+      <workItem from="1647361256310" duration="68000" />
+      <workItem from="1647372843254" duration="5551000" />
+      <workItem from="1647443087206" duration="173000" />
+      <workItem from="1647771360624" duration="6265000" />
+      <workItem from="1647779118020" duration="1076000" />
+      <workItem from="1647804362092" duration="6282000" />
+      <workItem from="1648244300164" duration="3427000" />
+      <workItem from="1648293167885" duration="6318000" />
+      <workItem from="1648763142554" duration="1951000" />
+      <workItem from="1648904577653" duration="128000" />
+      <workItem from="1648990366542" duration="1038000" />
     </task>
     <task id="LOCAL-00001" summary="react added">
       <created>1641326383349</created>
