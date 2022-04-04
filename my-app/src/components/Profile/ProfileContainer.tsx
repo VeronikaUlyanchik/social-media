@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect, useDispatch} from 'react-redux';
 import {Navigate, useParams} from 'react-router-dom';
-import {getProfileStatus, getProfileUser} from '../../redux/profile-reducer';
+import {getProfileStatus, getProfileUser, updateProfileStatus} from '../../redux/profile-reducer';
 import {AppStateType} from '../../redux/reduxState';
 import {MyPostsContainer} from './MyPosts/MyPostsContainer';
 import {Profile} from './Profile';
@@ -41,6 +41,7 @@ type MapStateToPropsType = {
 export type mapDispatchToPropsType = {
     getProfileUser: (userId: string) => void
     getProfileStatus: (userId: string) => void
+    updateProfileStatus: (status: string) => void
 };
 
 export type ProfilePropsType = MapStateToPropsType & mapDispatchToPropsType;
@@ -56,7 +57,7 @@ const ProfileContainer: React.FC<ProfilePropsType> = (props) => {
             props.getProfileStatus(userId)
         }, [userId])
         return (
-            <Profile state={props.profile} status={props.status}/>
+            <Profile state={props.profile} status={props.status} updateStatus={props.updateProfileStatus}/>
         )
     }
 ;
@@ -68,7 +69,7 @@ const mapStateToProps = (state: AppStateType) => ({
 
 export const ProfileContainerC = compose(
     WithAuthRedirectComponent,
-    connect(mapStateToProps, {getProfileUser, getProfileStatus})
+    connect(mapStateToProps, {getProfileUser, getProfileStatus, updateProfileStatus})
 )(ProfileContainer)
 
 

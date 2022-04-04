@@ -8,6 +8,7 @@ import { ProfileStatus } from './ProfileStatus';
 type ProfileInfoPropsType = {
     state?: APIUserType
     status:string
+    updateStatus: (status: string) => void
 }
 export const ProfileInfo = ({state, ...props}: ProfileInfoPropsType) => {
     if (!state) {
@@ -25,7 +26,7 @@ export const ProfileInfo = ({state, ...props}: ProfileInfoPropsType) => {
                      className={classes.avatar}/>
             </div>
                 <div>{state.fullName}</div>
-                <ProfileStatus status={props.status}/>
+                <ProfileStatus status={props.status} updateStatus = {props.updateStatus}/>
                 <div>{state.aboutMe}</div>
             </div>
         </div>
