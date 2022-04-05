@@ -3,7 +3,6 @@ import {postsDataType} from "../components/Profile/MyPosts/MyPosts";
 import {dispatchActionType, profilePageStateType} from "./state";
 
 const ADD_POST = 'ADD_POST';
-const CHANGE_POST_STATE = 'CHANGE_POST_STATE';
 const SET_PROFILE_USER = 'SET_PROFILE_USER';
 const GET_PROFILE_STATUS = 'SET_PROFILE_STATUS';
 const UPDATE_PROFILE_STATUS = 'UPDATE_PROFILE_STATUS';
@@ -15,7 +14,6 @@ let initialState = {
         {id: 3, message: "Hi", likes: 12},
         {id: 4, message: "Yes", likes: 15},
     ],
-    newPostText: '',
     profile: null,
     status: '',
 };
@@ -25,13 +23,10 @@ export const profileReducer = (state: profilePageStateType = initialState, actio
         case ADD_POST:
             let newPost: postsDataType = {
                 id: state.postData.length + 1,
-                message: state.newPostText,
+                message: action.text,
                 likes: 0,
             }
-            return {...state, postData: [newPost, ...state.postData], newPostText: ''};
-        case CHANGE_POST_STATE: {
-            return {...state, newPostText: action.text};
-        }
+            return {...state, postData: [newPost, ...state.postData]};
         case SET_PROFILE_USER: {
             return {...state, profile: action.profile};
         }
@@ -46,8 +41,7 @@ export const profileReducer = (state: profilePageStateType = initialState, actio
     }
 }
 
-export const addPostActionCreator = () => ({type: ADD_POST});
-export const changePostStateActionCreator = (text: string) => ({type: CHANGE_POST_STATE, text});
+export const addPostActionCreator = (text: string) => ({type: ADD_POST, text});
 const setProfileUserAC = (profile: any) => ({type:SET_PROFILE_USER, profile});
 const getProfileStatusAC = (status: any) => ({type:GET_PROFILE_STATUS, status});
 const updateProfileStatusAC = (status: any) => ({type:UPDATE_PROFILE_STATUS, status});

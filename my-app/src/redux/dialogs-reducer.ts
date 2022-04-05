@@ -1,7 +1,7 @@
 import {dialogsPageStateType, dispatchActionType, messagesItemsProps, stateType} from "./state";
 
 const ADD_MESSAGE = 'ADD_MESSAGE';
-const CHANGE_MESSAGE_STATE = 'CHANGE_MESSAGE_STATE';
+
 
 let initialState = {
     dialogs: [
@@ -18,7 +18,6 @@ let initialState = {
         {id: 4, message: "What are you doing?"},
         {id: 5, message: "Please"},
     ],
-    newMessageBody: ''
 };
 
 export const dialogsReducer = (state: dialogsPageStateType = initialState, action: dispatchActionType): dialogsPageStateType => {
@@ -26,15 +25,12 @@ export const dialogsReducer = (state: dialogsPageStateType = initialState, actio
         case ADD_MESSAGE:
             let newMessage: messagesItemsProps = {
                 id: state.messages.length + 1,
-                message: state.newMessageBody
+                message: action.text
             }
-            return {...state, messages: [...state.messages, newMessage], newMessageBody: ''};
-        case CHANGE_MESSAGE_STATE:
-            return {...state, newMessageBody: action.text};
+            return {...state, messages: [...state.messages, newMessage],};
         default:
             return state
     }
 }
 
-export const addMessageActionCreator = () => ({type: ADD_MESSAGE});
-export const changeMessageStateActionCreator = (text: string) => ({type: CHANGE_MESSAGE_STATE, text: text});
+export const addMessageActionCreator = (text: string) => ({type: ADD_MESSAGE, text});

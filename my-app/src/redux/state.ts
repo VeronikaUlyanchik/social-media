@@ -18,14 +18,12 @@ type postsDataType = {
 };
 export type profilePageStateType = {
     postData: Array<postsDataType>
-    newPostText: string
     profile: any
     status:string
 };
 export type dialogsPageStateType = {
     dialogs: Array<dialogsDataArrayType>
     messages: Array<messagesItemsProps>
-    newMessageBody:string
 };
 export type stateType = {
     dialogsPage: dialogsPageStateType

@@ -1,5 +1,4 @@
 import React from 'react';
-import { AppStateType } from '../../redux/reduxState';
 import { MyPostsContainer } from './MyPosts/MyPostsContainer';
 import { APIUserType } from './ProfileContainer';
 import { ProfileInfo } from './ProfileInfo/ProfileInfo';

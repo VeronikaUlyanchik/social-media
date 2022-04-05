@@ -3,7 +3,7 @@ import classes from './Dialogs.module.css';
 import {DialogsItems} from "./DialogsItems/DialogsItems";
 import {MessagesItems} from "./Messages/Messages";
 import {dialogsPageStateType, dispatchActionType, stateType} from "../../redux/state";
-import {addMessageActionCreator, changeMessageStateActionCreator} from "../../redux/dialogs-reducer";
+import {addMessageActionCreator} from "../../redux/dialogs-reducer";
 import {Dialogs} from './Dialogs';
 import {connect} from 'react-redux';
 import { AppStateType } from '../../redux/reduxState';
@@ -19,5 +19,5 @@ let mapStateToProps = (state:AppStateType) => {
 
 export const DialogsContainer = compose(
     WithAuthRedirectComponent,
-    connect(mapStateToProps, {addMessageActionCreator, changeMessageStateActionCreator})
+    connect(mapStateToProps, {addMessageActionCreator})
 )(Dialogs)
