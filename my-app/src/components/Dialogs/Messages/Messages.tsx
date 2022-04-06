@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './../Dialogs.module.css';
+import classes from './Messages.module.scss';
 import {messagesItemsProps} from "../../../redux/state";
 
 

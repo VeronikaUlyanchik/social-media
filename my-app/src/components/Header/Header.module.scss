@@ -1,0 +1,28 @@
+.header{
+    grid-area: h;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    background-color: #fff;
+    border-bottom: 1px solid #eaebec;
+    .headerInner {
+        font-family: 'Barlow', sans-serif;;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        padding: 0 30px;
+        .logo{
+            font-size: 25px ;
+            font-weight: 900;
+        }
+    }
+    img{
+        width: 100px;
+        height: 80px;
+
+    }
+}
+
+
