@@ -1,6 +1,7 @@
 import {Field, Form, Formik } from 'formik';
 import React from 'react';
-import classes from './MyPosts.module.css';
+import { validatePost } from '../../../utils/validate';
+import classes from './MyPosts.module.scss';
 import {Post} from './Post/Post';
 
 
@@ -48,11 +49,12 @@ const AddPostForm = (props:any) =>{
                     setSubmitting(false);
                 }, 400);
             }}>
-            {({isSubmitting}) => (
+            {({isSubmitting,errors,touched}) => (
                 <Form>
-                    <div><Field component="textarea"  name="post"/></div>
+                    <div className={errors.post ? classes.inputError : classes.postInput}><Field component="textarea"  name="post" validate={validatePost}/></div>
+                    {errors.post && touched.post && <div className={classes.errorText}>{errors.post}</div>}
                     <button type="submit"  disabled={isSubmitting}>
-                        Submit
+                        Post
                     </button>
                 </Form>
             )}

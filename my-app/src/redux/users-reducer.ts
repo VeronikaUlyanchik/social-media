@@ -1,5 +1,8 @@
 import {followAPI, userAPI } from "../api/api";
 import {dispatchActionType} from "./state";
+import {
+    Dispatch
+} from "../../../../../Program Files/JetBrains/WebStorm 2021.3.1/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/react";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -122,7 +125,7 @@ export const follow = (userId: number ) => {
 };
 
 export const unfollow = (userId: number ) => {
-    return (dispatch: (action: dispatchActionType) => void) => {
+    return (dispatch: Dispatch<dispatchActionType>) => {
         dispatch(toggleIsFollowingProcessAC(true, userId))
         followAPI.unfollow(userId).then(response => {
             if (response.resultCode == 0) {

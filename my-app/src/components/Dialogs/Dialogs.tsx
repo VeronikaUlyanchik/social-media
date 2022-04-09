@@ -1,10 +1,11 @@
-import React, {ChangeEvent, useState} from 'react';
-import classes from './Dialogs.module.css';
+import React from 'react';
+import classes from './Dialogs.module.scss';
 import {DialogsItems} from "./DialogsItems/DialogsItems";
 import {MessagesItems} from "./Messages/Messages";
-import {dialogsPageStateType, dispatchActionType} from "../../redux/state";
+import {dialogsPageStateType} from "../../redux/state";
 import {Navigate} from 'react-router-dom';
 import {Field, Form, Formik } from 'formik';
+import { validateMessage } from '../../utils/validate';
 
 
 type dialogsPropsType = {
@@ -27,7 +28,7 @@ export const Dialogs: React.FC<dialogsPropsType> = ({dialogsPageData, ...props})
             <div className={classes.dialogsItems}>
                 {dialogsItems}
             </div>
-            <div className={classes.messagesItems}>
+            <div>
                 {messageItems}
                 <div>
                     <AddMessageForm sendMessage={sendMessage}/>
@@ -51,11 +52,12 @@ const AddMessageForm = (props:AddMessageFormType) =>{
                     setSubmitting(false);
                 }, 400);
             }}>
-            {({isSubmitting}) => (
+            {({isSubmitting,errors, touched}) => (
                 <Form>
-                    <div><Field className={classes.textarea} component="textarea"  placeholder="Text your message" name="message"/></div>
+                    <div><Field className={errors.message ? classes.textareaError : classes.textarea} component="textarea"  placeholder="Text your message" name="message" validate={validateMessage}/></div>
+                    {errors.message && touched.message && <div className={classes.errorText}>{errors.message}</div>}
                     <button type="submit"  disabled={isSubmitting}>
-                        Submit
+                        Send
                     </button>
                 </Form>
             )}

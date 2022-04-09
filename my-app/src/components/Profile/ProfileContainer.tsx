@@ -65,11 +65,11 @@ const ProfileContainer: React.FC<ProfilePropsType> = (props) => {
 const mapStateToProps = (state: AppStateType) => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
-})
+});
 
 export const ProfileContainerC = compose(
     WithAuthRedirectComponent,
     connect(mapStateToProps, {getProfileUser, getProfileStatus, updateProfileStatus})
-)(ProfileContainer)
+)(ProfileContainer);
 
 

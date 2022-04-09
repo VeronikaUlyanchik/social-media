@@ -1,0 +1,27 @@
+.dialogsContent{
+    display: grid;
+    grid-template-columns: 3fr 10fr;
+    padding: 10px;
+    font-family: 'Barlow', sans-serif;
+    .dialogsItems{
+
+    }
+    .textarea{
+
+    }
+    .textareaError{
+        border:2px solid red;
+    }
+    .errorText{
+        font-size: 15px;
+        color: #c96a6a;
+    }
+}
+
+.dialog{
+    margin: 10px;
+}
+
+.message{
+    margin: 10px;
+}

@@ -1,6 +1,9 @@
 import { userAPI } from "../api/api";
 import {postsDataType} from "../components/Profile/MyPosts/MyPosts";
 import {dispatchActionType, profilePageStateType} from "./state";
+import {
+    Dispatch
+} from "../../../../../Program Files/JetBrains/WebStorm 2021.3.1/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/react";
 
 const ADD_POST = 'ADD_POST';
 const SET_PROFILE_USER = 'SET_PROFILE_USER';
@@ -45,17 +48,17 @@ export const addPostActionCreator = (text: string) => ({type: ADD_POST, text});
 const setProfileUserAC = (profile: any) => ({type:SET_PROFILE_USER, profile});
 const getProfileStatusAC = (status: any) => ({type:GET_PROFILE_STATUS, status});
 const updateProfileStatusAC = (status: any) => ({type:UPDATE_PROFILE_STATUS, status});
-export const getProfileUser = (userId:string) => (dispatch: (action: dispatchActionType) => void) => {
+export const getProfileUser = (userId:string) => (dispatch: Dispatch<dispatchActionType>) => {
     userAPI.getProfile(userId).then(response => {
         dispatch(setProfileUserAC(response.data))
     })
 };
-export const getProfileStatus = (userId:string) => (dispatch: (action: dispatchActionType) => void) => {
+export const getProfileStatus = (userId:string) => (dispatch: Dispatch<dispatchActionType>) => {
     userAPI.getProfileStatus(userId).then(response => {
         dispatch(getProfileStatusAC(response.data))
     })
 };
-export const updateProfileStatus = (status:string) => (dispatch: (action: dispatchActionType) => void) => {
+export const updateProfileStatus = (status:string) => (dispatch: Dispatch<dispatchActionType>) => {
     userAPI.updateProfileStatus(status).then(response => {
         if(response.data.resultCode === 0){
         dispatch(updateProfileStatusAC(status))
