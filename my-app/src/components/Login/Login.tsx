@@ -1,9 +1,17 @@
 import {Field, Form, Formik} from 'formik';
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+import { login } from '../../redux/auth-reducer';
+import { AppStateType } from '../../redux/reduxState';
 import { validateLogin, validatePassword } from '../../utils/validate';
 import classes from './Login.module.scss';
 
 export const Login = () => {
+    const {isAuth,id} = useSelector((state:AppStateType)=> state.auth)
+    if (isAuth){
+        return <Navigate to={`/profile/${id}`}/>
+    }
     return (
         <div className={classes.containerForm}>
             <h1>Login</h1>
@@ -13,20 +21,21 @@ export const Login = () => {
 }
 
 const LoginForm = () => {
+    const dispatch = useDispatch()
     return (
         <Formik
-            initialValues={{login: '', password: '', rememberMe: false}}
+            initialValues={{email: '', password: '', rememberMe: false}}
             onSubmit={(values, {setSubmitting}) => {
-                console.log(values)
+                dispatch(login(values))
                 setTimeout(() => {
                     setSubmitting(false);
                 }, 400);
             }}>
             {({isSubmitting, errors, touched}) => (
                 <Form>
-                    <div><Field className={errors.login ? classes.loginError : classes.loginInput} placeholder="Login"
-                                name="login" validate={validateLogin}/>
-                        {errors.login && touched.login && <div className={classes.errorText} >{errors.login}</div>}
+                    <div><Field className={errors.email ? classes.loginError : classes.loginInput} placeholder="Login"
+                                name="email" validate={validateLogin}/>
+                        {errors.email && touched.email && <div className={classes.errorText} >{errors.email}</div>}
                     </div>
                     <div><Field className={errors.password ? classes.loginError : classes.loginInput} type="password"
                                 name="password" placeholder="Password" validate={validatePassword}/>

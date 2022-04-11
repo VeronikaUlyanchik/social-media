@@ -1,4 +1,5 @@
 import axios from "axios";
+import { FormDataType } from "../redux/auth-reducer";
 
 const instance = axios.create({
     withCredentials: true,
@@ -12,7 +13,15 @@ const instance = axios.create({
 export const authAPI = {
     authMe() {
         return instance.get('auth/me').then(res => res.data)
-    }
+    },
+    login(formData: FormDataType) {
+        debugger
+        return instance.post<AuthResponseType>('auth/login', formData).then(res => res.data)
+    },
+    logout() {
+        return instance.delete('auth/login').then(res => res.data)
+    },
+
 };
 
 export const followAPI = {
@@ -39,3 +48,13 @@ export const userAPI = {
     },
 
 };
+
+type AuthResponseType = {
+    resultCode: number
+    messages: []
+    data: {
+        id: number
+        email: string
+        login: string
+    }
+}
