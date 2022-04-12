@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect, useDispatch} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import {Navigate, useParams} from 'react-router-dom';
 import {getProfileStatus, getProfileUser, updateProfileStatus} from '../../redux/profile-reducer';
 import {AppStateType} from '../../redux/reduxState';
@@ -47,15 +47,17 @@ export type mapDispatchToPropsType = {
 export type ProfilePropsType = MapStateToPropsType & mapDispatchToPropsType;
 
 const ProfileContainer: React.FC<ProfilePropsType> = (props) => {
-
+        const {id,isAuth} = useSelector((state:AppStateType)=>state.auth);
         let {userId} = useParams();
+    debugger
         useEffect(() => {
-            if (!userId) {
-                userId = '2';
-            }
-            props.getProfileUser(userId)
-            props.getProfileStatus(userId)
+                if (!userId) {
+                    userId = id ? id.toString() : '';
+                }
+                id && props.getProfileUser(userId)
+                props.getProfileStatus(userId)
         }, [userId])
+        if (!isAuth) return <Navigate to={'/login'}/>
         return (
             <Profile state={props.profile} status={props.status} updateStatus={props.updateProfileStatus}/>
         )

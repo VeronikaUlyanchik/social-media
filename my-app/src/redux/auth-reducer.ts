@@ -1,9 +1,8 @@
 import React from 'react';
 import { authAPI } from '../api/api';
-import { dispatchActionType } from './state';
 import {
     Dispatch
-} from "../../../../../Program Files/JetBrains/WebStorm 2021.3.1/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/react";
+} from "react";
 
 const SET_USER_AUTH = 'SET_USER_AUTH';
 
@@ -54,12 +53,14 @@ export type FormDataType = {
     rememberMe: boolean
 }
 
-export const login = (formData: FormDataType) => {
+export const login = (formData: FormDataType, setStatus: (status?: any) => void) => {
     return (dispatch: Dispatch<any>) => {
-        debugger
         authAPI.login(formData).then((res)=> {
             if (res.resultCode === 0) {
                 dispatch(getUserAuthData())
+            }
+            else {
+                setStatus(res.messages[0])
             }
         })
     }

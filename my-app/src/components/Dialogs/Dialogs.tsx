@@ -53,7 +53,7 @@ const AddMessageForm = (props:AddMessageFormType) =>{
                 }, 400);
             }}>
             {({isSubmitting,errors, touched}) => (
-                <Form>
+                <Form >
                     <div><Field className={errors.message ? classes.textareaError : classes.textarea} component="textarea"  placeholder="Text your message" name="message" validate={validateMessage}/></div>
                     {errors.message && touched.message && <div className={classes.errorText}>{errors.message}</div>}
                     <button type="submit"  disabled={isSubmitting}>

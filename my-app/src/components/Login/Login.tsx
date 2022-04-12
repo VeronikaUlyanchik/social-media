@@ -7,7 +7,7 @@ import { AppStateType } from '../../redux/reduxState';
 import { validateLogin, validatePassword } from '../../utils/validate';
 import classes from './Login.module.scss';
 
-export const Login = () => {
+export const Login = React.memo(() => {
     const {isAuth,id} = useSelector((state:AppStateType)=> state.auth)
     if (isAuth){
         return <Navigate to={`/profile/${id}`}/>
@@ -18,20 +18,20 @@ export const Login = () => {
             <LoginForm/>
         </div>
     )
-}
+})
 
 const LoginForm = () => {
     const dispatch = useDispatch()
     return (
         <Formik
             initialValues={{email: '', password: '', rememberMe: false}}
-            onSubmit={(values, {setSubmitting}) => {
-                dispatch(login(values))
+            onSubmit={(values, {setSubmitting, setStatus}) => {
+                dispatch(login(values, setStatus))
                 setTimeout(() => {
                     setSubmitting(false);
                 }, 400);
             }}>
-            {({isSubmitting, errors, touched}) => (
+            {({isSubmitting, errors, touched, status}) => (
                 <Form>
                     <div><Field className={errors.email ? classes.loginError : classes.loginInput} placeholder="Login"
                                 name="email" validate={validateLogin}/>
@@ -42,6 +42,9 @@ const LoginForm = () => {
                         {errors.password && touched.password &&
                             <div className={classes.errorText}>{errors.password}</div>}</div>
                     <div><Field type="checkbox" name="rememberMe"/> remember me</div>
+                    {status && (
+                        <div className={classes.errorStatus}>{status}</div>
+                    )}
                     <button type="submit" disabled={isSubmitting}>
                         Submit
                     </button>

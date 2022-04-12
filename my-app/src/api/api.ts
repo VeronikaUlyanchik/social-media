@@ -51,7 +51,7 @@ export const userAPI = {
 
 type AuthResponseType = {
     resultCode: number
-    messages: []
+    messages: any[]
     data: {
         id: number
         email: string
