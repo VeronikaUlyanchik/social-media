@@ -49,7 +49,6 @@ export type ProfilePropsType = MapStateToPropsType & mapDispatchToPropsType;
 const ProfileContainer: React.FC<ProfilePropsType> = (props) => {
         const {id,isAuth} = useSelector((state:AppStateType)=>state.auth);
         let {userId} = useParams();
-    debugger
         useEffect(() => {
                 if (!userId) {
                     userId = id ? id.toString() : '';

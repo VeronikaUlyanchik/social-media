@@ -23,6 +23,7 @@ const initialState: AuthStateType = {
 export const authReducer = (state :AuthStateType = initialState, action: setUserAuthACType ):AuthStateType => {
         switch (action.type) {
             case "SET_USER_AUTH":
+                debugger
                 return {
                     ...state,
                     ...action.payload,
@@ -33,24 +34,22 @@ export const authReducer = (state :AuthStateType = initialState, action: setUser
 }
 
 export type setUserAuthACType = ReturnType<typeof setUserAuthAC>;
+export type FormDataType = {
+    email: string
+    password: string
+    rememberMe: boolean
+}
 
+const setUserAuthAC = (data: AuthStateType) => ({type: SET_USER_AUTH, payload: data});
 
-const setUserAuthAC = (data: AuthStateType) => ({type: SET_USER_AUTH, payload: data})
-export const getUserAuthData = () => {
-    return (dispatch: Dispatch<setUserAuthACType>) => {
-        authAPI.authMe().then((res)=> {
+export const getUserAuthData = () => (dispatch: Dispatch<setUserAuthACType>):Promise<any> => {
+       return authAPI.authMe()
+           .then((res)=> {
             if (res.resultCode === 0) {
                 let {id, email, login}= res.data
                 dispatch(setUserAuthAC({id, email, login , isAuth:true}))
             }
         })
-    }
-}
-
-export type FormDataType = {
-    email: string
-    password: string
-    rememberMe: boolean
 }
 
 export const login = (formData: FormDataType, setStatus: (status?: any) => void) => {

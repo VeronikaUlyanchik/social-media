@@ -3,9 +3,10 @@ import { useSelector } from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import { AppStateType } from '../../redux/reduxState';
 import classes from './NavBar.module.scss';
+import {memo} from "react";
 
 
-export const NavBar:React.FC = () => {
+export const NavBar:React.FC = memo(() => {
 
     const {id} = useSelector((state:AppStateType)=>state.auth);
     return (
@@ -31,4 +32,4 @@ export const NavBar:React.FC = () => {
                 to="/users">Users</NavLink></div>
         </nav>
     )
-}
+})

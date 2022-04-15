@@ -7,7 +7,7 @@ import { AppStateType } from '../../redux/reduxState';
 import { validateLogin, validatePassword } from '../../utils/validate';
 import classes from './Login.module.scss';
 
-export const Login = React.memo(() => {
+export const Login = () => {
     const {isAuth,id} = useSelector((state:AppStateType)=> state.auth)
     if (isAuth){
         return <Navigate to={`/profile/${id}`}/>
@@ -18,7 +18,7 @@ export const Login = React.memo(() => {
             <LoginForm/>
         </div>
     )
-})
+}
 
 const LoginForm = () => {
     const dispatch = useDispatch()

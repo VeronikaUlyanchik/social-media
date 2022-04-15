@@ -22,7 +22,7 @@ export const Dialogs: React.FC<dialogsPropsType> = ({dialogsPageData, ...props})
     const dialogsItems = dialogsPageData.dialogs.map((d => <DialogsItems name={d.name} id={d.id}/>));
     const messageItems = dialogsPageData.messages.map((m => <MessagesItems message={m.message}/>));
 
-    if (!props.isAuth) return <Navigate to={'/login'}/>
+    // if (!props.isAuth) return <Navigate to={'/login'}/>
     return (
         <div className={classes.dialogsContent}>
             <div className={classes.dialogsItems}>

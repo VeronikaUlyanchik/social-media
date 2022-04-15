@@ -15,7 +15,6 @@ export const authAPI = {
         return instance.get('auth/me').then(res => res.data)
     },
     login(formData: FormDataType) {
-        debugger
         return instance.post<AuthResponseType>('auth/login', formData).then(res => res.data)
     },
     logout() {
