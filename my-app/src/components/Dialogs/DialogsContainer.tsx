@@ -9,10 +9,11 @@ import {connect} from 'react-redux';
 import { AppStateType } from '../../redux/reduxState';
 import { WithAuthRedirectComponent } from '../../hoc/withAuthRedirectComponent';
 import { compose } from 'redux';
+import { getDialogsPageSelector } from '../../utils/selectors';
 
-let mapStateToProps = (state:AppStateType) => {
+const mapStateToProps = (state:AppStateType) => {
     return {
-        dialogsPageData: state.dialogsPage,
+        dialogsPageData: getDialogsPageSelector(state),
     }
 }
 

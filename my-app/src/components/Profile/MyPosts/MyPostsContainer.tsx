@@ -1,15 +1,16 @@
 import React, {ChangeEvent, useState} from 'react';
-import {dispatchActionType, stateType} from '../../../redux/state';
+import {dispatchActionType} from '../../../redux/state';
 import {addPostActionCreator} from '../../../redux/profile-reducer';
 import {Post} from './Post/Post';
 import {AppStateType} from '../../../redux/reduxState';
 import {MyPosts} from './MyPosts';
 import {connect} from 'react-redux';
+import { getPostDataSelector } from '../../../utils/selectors';
 
 
-let mapStateToProps = (state: stateType) => {
+let mapStateToProps = (state: AppStateType) => {
     return {
-        postData: state.profilePage.postData,
+        postData: getPostDataSelector(state),
     }
 }
 

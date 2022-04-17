@@ -22,6 +22,8 @@ import {Users} from './Users';
 import {Preloader} from '../Preloader/Preloader';
 import {followAPI, userAPI} from '../../api/api';
 import { dispatchActionType } from '../../redux/state';
+import {getCurrentPageSelector, getIsFetchingSelector, getNumberOnPageSelector,
+    getUserInFollowingProcess, getUsersCountSelector, getUsersSelector } from '../../utils/selectors';
 
 
 type MapStateToPropsType = {
@@ -43,10 +45,6 @@ export type mapDispatchToPropsType = {
 export type UsersPropsType = MapStateToPropsType & mapDispatchToPropsType;
 
 class UsersAPIContainer extends React.Component<UsersPropsType> {
-    // constructor(props: UsersPropsType) {
-    //     super(props)
-    // }
-
 
     componentDidMount() {
        this.props.getUsers(this.props.currentPage, this.props.numberOnPage)
@@ -76,12 +74,12 @@ class UsersAPIContainer extends React.Component<UsersPropsType> {
 };
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        users: state.usersPage.users,
-        currentPage: state.usersPage.currentPage,
-        numberOnPage: state.usersPage.numberOnPage,
-        usersCount: state.usersPage.usersCount,
-        isFetching: state.usersPage.isFetching,
-        userInFollowingProcess: state.usersPage.userInFollowingProcess
+        users: getUsersSelector(state),
+        currentPage: getCurrentPageSelector(state),
+        numberOnPage: getNumberOnPageSelector(state),
+        usersCount: getUsersCountSelector(state),
+        isFetching: getIsFetchingSelector(state),
+        userInFollowingProcess: getUserInFollowingProcess(state)
     }
 }
 // const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {

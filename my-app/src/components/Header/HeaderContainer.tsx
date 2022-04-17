@@ -1,6 +1,6 @@
 import React from 'react';
 import {Header} from './Header';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {useEffect} from "react";
 import {AppStateType} from '../../redux/reduxState';
 import axios from 'axios';

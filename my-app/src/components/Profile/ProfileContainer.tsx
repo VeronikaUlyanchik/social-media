@@ -6,12 +6,11 @@ import {AppStateType} from '../../redux/reduxState';
 import {MyPostsContainer} from './MyPosts/MyPostsContainer';
 import {Profile} from './Profile';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
-import {
-    useEffect
-} from "react";
+import {useEffect} from "react";
 import {userAPI} from '../../api/api';
 import { WithAuthRedirectComponent } from '../../hoc/withAuthRedirectComponent';
 import { compose } from 'redux';
+import { getProfileSelector, getStatusSelector } from '../../utils/selectors';
 
 export type APIUserType = {
     aboutMe: string | null
@@ -64,8 +63,8 @@ const ProfileContainer: React.FC<ProfilePropsType> = (props) => {
 ;
 
 const mapStateToProps = (state: AppStateType) => ({
-    profile: state.profilePage.profile,
-    status: state.profilePage.status,
+    profile: getProfileSelector(state),
+    status: getStatusSelector(state),
 });
 
 export const ProfileContainerC = compose(
