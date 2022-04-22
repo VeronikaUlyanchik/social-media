@@ -33,4 +33,8 @@ export const dialogsReducer = (state: dialogsPageStateType = initialState, actio
     }
 }
 
+type AddMessageACType = ReturnType<typeof addMessageActionCreator>;
+
 export const addMessageActionCreator = (text: string) => ({type: ADD_MESSAGE, text});
+
+export type DialogsActionsType = AddMessageACType

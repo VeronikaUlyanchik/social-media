@@ -10,7 +10,6 @@ import {
     toggleIsFollowingProcessAC,
     unfollowAC,
     UsersStateType,
-    UserType,
     getUsers,
     follow,
     unfollow
@@ -20,7 +19,7 @@ import axios from 'axios';
 import s from './users.module.css';
 import {Users} from './Users';
 import {Preloader} from '../Preloader/Preloader';
-import {followAPI, userAPI} from '../../api/api';
+import {followAPI, userAPI, UserType} from '../../api/api';
 import { dispatchActionType } from '../../redux/state';
 import {getCurrentPageSelector, getIsFetchingSelector, getNumberOnPageSelector,
     getUserInFollowingProcess, getUsersCountSelector, getUsersSelector } from '../../utils/selectors';
@@ -34,6 +33,7 @@ type MapStateToPropsType = {
     isFetching: boolean
     userInFollowingProcess: number[]
 };
+
 export type mapDispatchToPropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
@@ -82,29 +82,6 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         userInFollowingProcess: getUserInFollowingProcess(state)
     }
 }
-// const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
-//     return {
-//         follow: (userId: number) => {
-//             dispatch(followAC(userId))
-//         },
-//         unfollow: (userId: number) => {
-//             dispatch(unfollowAC(userId))
-//         },
-//         setUsers: (state: Array<UserType>) => {
-//             dispatch(setUsersAC(state))
-//         },
-//         setCurrentPage: (currentPage: number) => {
-//             dispatch(setCurrentPageAC(currentPage))
-//         },
-//         setTotalUsersCount: (totalUsers: number) => {
-//             dispatch(setTotalUsersCountAC(totalUsers))
-//         },
-//         toggleIsFetching: (isFetching: boolean) => {
-//             dispatch(toggleIsFetchingAC(isFetching))
-//         },
-//     }
-// }
-
 
 export const UsersContainer = connect(mapStateToProps, {
     setCurrentPageAC,

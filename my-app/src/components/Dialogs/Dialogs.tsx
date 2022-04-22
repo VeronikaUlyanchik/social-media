@@ -4,8 +4,7 @@ import {DialogsItems} from "./DialogsItems/DialogsItems";
 import {MessagesItems} from "./Messages/Messages";
 import {dialogsPageStateType} from "../../redux/state";
 import {Navigate} from 'react-router-dom';
-import {Field, Form, Formik } from 'formik';
-import { validateMessage } from '../../utils/validate';
+import {Field, Form, Formik, useFormik} from 'formik';
 
 
 type dialogsPropsType = {
@@ -17,12 +16,11 @@ type dialogsPropsType = {
 export const Dialogs: React.FC<dialogsPropsType> = ({dialogsPageData, ...props}) => {
 
     const sendMessage = (text: string) => {
-            props.addMessageActionCreator(text)
+        props.addMessageActionCreator(text)
     }
     const dialogsItems = dialogsPageData.dialogs.map((d => <DialogsItems name={d.name} id={d.id}/>));
     const messageItems = dialogsPageData.messages.map((m => <MessagesItems message={m.message}/>));
 
-    // if (!props.isAuth) return <Navigate to={'/login'}/>
     return (
         <div className={classes.dialogsContent}>
             <div className={classes.dialogsItems}>
@@ -42,25 +40,38 @@ type AddMessageFormType = {
     sendMessage: (text: string) => void
 }
 
-const AddMessageForm = (props:AddMessageFormType) =>{
+const AddMessageForm = (props: AddMessageFormType) => {
+
+    const formik = useFormik({
+        initialValues: {
+            message: '',
+        },
+        onSubmit: (values, {setSubmitting}) => {
+            setTimeout(() => {
+                setSubmitting(false);
+            }, 400);
+            props.sendMessage(values.message)
+            formik.resetForm()
+        },
+        validate: values => {
+            const errors: { message?: string } = {};
+            if (!values.message) {
+                errors.message = 'Message can not be empty';
+            }
+            return errors
+        }
+    });
+
     return (
-        <Formik
-            initialValues={{message:''}}
-            onSubmit={(values,{setSubmitting})=> {
-                props.sendMessage(values.message)
-                setTimeout(() => {
-                    setSubmitting(false);
-                }, 400);
-            }}>
-            {({isSubmitting,errors, touched}) => (
-                <Form >
-                    <div><Field className={errors.message ? classes.textareaError : classes.textarea} component="textarea"  placeholder="Text your message" name="message" validate={validateMessage}/></div>
-                    {errors.message && touched.message && <div className={classes.errorText}>{errors.message}</div>}
-                    <button type="submit"  disabled={isSubmitting}>
-                        Send
-                    </button>
-                </Form>
-            )}
-        </Formik>
+        <form onSubmit={formik.handleSubmit}>
+            <div><textarea className={formik.errors.message ? classes.textareaError : classes.textarea}
+                        placeholder="Text your message" name="message"
+                        onChange={formik.handleChange}
+                        value={formik.values.message}/></div>
+            {formik.errors.message && <div className={classes.errorText}>{formik.errors.message}</div>}
+            <button type="submit" disabled={formik.isSubmitting}>
+                Send
+            </button>
+        </form>
     )
 }

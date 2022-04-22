@@ -3,6 +3,7 @@ import { authAPI } from '../api/api';
 import {
     Dispatch
 } from "react";
+import { AppThunkType } from './reduxState';
 
 const SET_USER_AUTH = 'SET_USER_AUTH';
 
@@ -20,6 +21,12 @@ const initialState: AuthStateType = {
     isAuth: false,
 }
 
+export type FormDataType = {
+    email: string
+    password: string
+    rememberMe: boolean
+}
+
 export const authReducer = (state :AuthStateType = initialState, action: setUserAuthACType ):AuthStateType => {
         switch (action.type) {
             case "SET_USER_AUTH":
@@ -34,15 +41,10 @@ export const authReducer = (state :AuthStateType = initialState, action: setUser
 }
 
 export type setUserAuthACType = ReturnType<typeof setUserAuthAC>;
-export type FormDataType = {
-    email: string
-    password: string
-    rememberMe: boolean
-}
 
 const setUserAuthAC = (data: AuthStateType) => ({type: SET_USER_AUTH, payload: data});
 
-export const getUserAuthData = () => (dispatch: Dispatch<setUserAuthACType>):Promise<any> => {
+export const getUserAuthData = () => (dispatch: Dispatch<AuthActionsType>):Promise<any> => {
        return authAPI.authMe()
            .then((res)=> {
             if (res.resultCode === 0) {
@@ -52,8 +54,8 @@ export const getUserAuthData = () => (dispatch: Dispatch<setUserAuthACType>):Pro
         })
 }
 
-export const login = (formData: FormDataType, setStatus: (status?: any) => void) => {
-    return (dispatch: Dispatch<any>) => {
+export const login = (formData: FormDataType, setStatus: (status?: any) => void):AppThunkType => {
+    return (dispatch) => {
         authAPI.login(formData).then((res)=> {
             if (res.resultCode === 0) {
                 dispatch(getUserAuthData())
@@ -65,8 +67,8 @@ export const login = (formData: FormDataType, setStatus: (status?: any) => void)
     }
 }
 
-export const logout = () => {
-    return (dispatch: Dispatch<setUserAuthACType>) => {
+export const logout = ():AppThunkType => {
+    return (dispatch) => {
         authAPI.logout().then((res)=> {
             if (res.resultCode === 0) {
                 dispatch(setUserAuthAC({id:null, email:null, login:null , isAuth:false}))
@@ -74,3 +76,5 @@ export const logout = () => {
         })
     }
 }
+
+export type AuthActionsType = setUserAuthACType;

@@ -1,14 +1,14 @@
 import React from 'react';
 import {useParams} from 'react-router-dom';
 import {Preloader} from '../../Preloader/Preloader';
-import {APIUserType} from '../ProfileContainer';
 import classes from './ProfileInfo.module.scss';
 import {ProfileStatus} from './ProfileStatus';
 import mainPicture from '../../../assets/social-media.png'
 import defaultAvatar from '../../../assets/avatar.webp'
+import { UserProfileType } from '../../../api/api';
 
 type ProfileInfoPropsType = {
-    state?: APIUserType
+    state?: UserProfileType
     status: string
     updateStatus: (status: string) => void
 }

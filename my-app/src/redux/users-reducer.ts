@@ -1,8 +1,7 @@
-import {followAPI, userAPI } from "../api/api";
+import {followAPI, userAPI, UserType } from "../api/api";
 import {dispatchActionType} from "./state";
-import {
-    Dispatch
-} from "../../../../../Program Files/JetBrains/WebStorm 2021.3.1/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/react";
+import {Dispatch} from "react";
+import { AppThunkType } from "./reduxState";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -13,14 +12,6 @@ const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 const TOGGLE_IS_F0LLOWING = 'TOGGLE_IS_F0LLOWING';
 
 
-export type UserType = {
-    name: string
-    id: number
-    uniqueUrlName: string | null
-    status: string | null
-    followed: boolean,
-    photos: { small: string, large: string }
-}
 export type UsersStateType = {
     users: Array<UserType>
     currentPage: number
@@ -38,7 +29,7 @@ let initialState: UsersStateType = {
     userInFollowingProcess: []
 };
 
-export const usersReducer = (state: UsersStateType = initialState, action: UserActionType): UsersStateType => {
+export const usersReducer = (state: UsersStateType = initialState, action: UsersActionsType): UsersStateType => {
     switch (action.type) {
         case FOLLOW: {
             return {...state, users: state.users.map(u => u.id === action.userId ? {...u, followed: true} : u)};
@@ -72,15 +63,6 @@ export const usersReducer = (state: UsersStateType = initialState, action: UserA
 }
 
 
-export type UserActionType =
-    FollowActionType
-    | UnFollowActionType
-    | setUsersActionType
-    | setCurrentPageType
-    | setTotalUsersCountType
-    | toggleIsFetchingType
-    |toggleIsFollowingProcessType;
-
 type FollowActionType = ReturnType<typeof followAC>
 type UnFollowActionType = ReturnType<typeof unfollowAC>
 type setUsersActionType = ReturnType<typeof setUsersAC>
@@ -100,7 +82,7 @@ export const toggleIsFollowingProcessAC = (isFetching: boolean, userId: number) 
 
 //thunks
 export const getUsers = (currentPage: number,numberOnPage: number ) => {
-    return (dispatch: (action: dispatchActionType) => void) => {
+    return (dispatch: Dispatch<UsersActionsType>) => {
         dispatch(toggleIsFetchingAC(true))
         userAPI.getUsers(currentPage, numberOnPage)
             .then(response => {
@@ -112,8 +94,8 @@ export const getUsers = (currentPage: number,numberOnPage: number ) => {
     }
 };
 
-export const follow = (userId: number ) => {
-    return (dispatch: (action: dispatchActionType) => void) => {
+export const follow = (userId: number ):AppThunkType => {
+    return (dispatch) => {
         dispatch(toggleIsFollowingProcessAC(true, userId))
         followAPI.follow(userId).then(response => {
             if (response.resultCode == 0) {
@@ -125,7 +107,7 @@ export const follow = (userId: number ) => {
 };
 
 export const unfollow = (userId: number ) => {
-    return (dispatch: Dispatch<dispatchActionType>) => {
+    return (dispatch: Dispatch<UsersActionsType>) => {
         dispatch(toggleIsFollowingProcessAC(true, userId))
         followAPI.unfollow(userId).then(response => {
             if (response.resultCode == 0) {
@@ -135,3 +117,12 @@ export const unfollow = (userId: number ) => {
         })
     }
 };
+
+export type UsersActionsType =
+    FollowActionType
+    | UnFollowActionType
+    | setUsersActionType
+    | setCurrentPageType
+    | setTotalUsersCountType
+    | toggleIsFetchingType
+    |toggleIsFollowingProcessType;

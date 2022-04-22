@@ -1,7 +1,6 @@
 import React, {ChangeEvent} from 'react';
 import {useParams} from 'react-router-dom';
 import {Preloader} from '../../Preloader/Preloader';
-import {APIUserType} from '../ProfileContainer';
 import classes from './ProfileInfo.module.css';
 
 type ProfileStatusType = {

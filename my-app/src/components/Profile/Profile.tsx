@@ -1,10 +1,10 @@
 import React from 'react';
+import { UserProfileType } from '../../api/api';
 import { MyPostsContainer } from './MyPosts/MyPostsContainer';
-import { APIUserType } from './ProfileContainer';
 import { ProfileInfo } from './ProfileInfo/ProfileInfo';
 
 type profilePropsType={
-    state?: APIUserType
+    state?: UserProfileType
     status:string
     updateStatus: (status: string) => void
 }

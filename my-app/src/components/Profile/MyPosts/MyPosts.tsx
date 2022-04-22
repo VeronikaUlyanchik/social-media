@@ -1,6 +1,5 @@
-import {Field, Form, Formik } from 'formik';
+import {Field, Form, Formik, useFormik } from 'formik';
 import React from 'react';
-import { validatePost } from '../../../utils/validate';
 import classes from './MyPosts.module.scss';
 import {Post} from './Post/Post';
 
@@ -40,24 +39,37 @@ export const MyPosts: React.FC<myPostPropsType> = (props) => {
 };
 
 const AddPostForm = (props:any) =>{
+
+    const formik = useFormik({
+        initialValues: {
+            post: '',
+        },
+        onSubmit: (values, {setSubmitting}) => {
+            setTimeout(() => {
+                setSubmitting(false);
+            }, 400);
+            props.addPost(values.post)
+            formik.resetForm()
+        },
+        validate: values => {
+            const errors: { post?: string } = {};
+            if (!values.post) {
+                errors.post = 'Message can not be empty';
+            }
+            return errors
+        }
+    });
+
     return (
-        <Formik
-            initialValues={{post:''}}
-            onSubmit={(values,{setSubmitting})=> {
-                props.addPost(values.post)
-                setTimeout(() => {
-                    setSubmitting(false);
-                }, 400);
-            }}>
-            {({isSubmitting,errors,touched}) => (
-                <Form>
-                    <div className={errors.post ? classes.inputError : classes.postInput}><Field component="textarea"  name="post" validate={validatePost}/></div>
-                    {errors.post && touched.post && <div className={classes.errorText}>{errors.post}</div>}
-                    <button type="submit"  disabled={isSubmitting}>
-                        Post
-                    </button>
-                </Form>
-            )}
-        </Formik>
+        <form onSubmit={formik.handleSubmit}>
+            <div><textarea className={formik.errors.post ? classes.inputError : classes.postInput}
+                           placeholder="New post" name="post"
+                           onChange={formik.handleChange}
+                           value={formik.values.post}/></div>
+            {formik.errors.post && <div className={classes.errorText}>{formik.errors.post}</div>}
+            <button type="submit" disabled={formik.isSubmitting}>
+                Send
+            </button>
+        </form>
     )
 }

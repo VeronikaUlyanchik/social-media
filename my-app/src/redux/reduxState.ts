@@ -1,19 +1,20 @@
 import {applyMiddleware, combineReducers, createStore } from "redux";
-import thunk from "redux-thunk";
-import { appReducer } from "./app-reducer";
-import { authReducer } from "./auth-reducer";
-import { dialogsReducer } from "./dialogs-reducer";
-import { profileReducer } from "./profile-reducer";
+import thunk, { ThunkAction } from "redux-thunk";
+import { appReducer, AppReducerActionType } from "./app-reducer";
+import {AuthActionsType, authReducer } from "./auth-reducer";
+import {DialogsActionsType, dialogsReducer } from "./dialogs-reducer";
+import {ProfileActionsType, profileReducer } from "./profile-reducer";
 import { dialogsPageStateType, dispatchActionType, profilePageStateType, stateType } from "./state";
-import {UserActionType, usersReducer, UsersStateType } from "./users-reducer";
+import { UsersActionsType, usersReducer, UsersStateType } from "./users-reducer";
 
 export type reducersType = {
-    dialogsPage:(state: dialogsPageStateType, action: dispatchActionType) => dialogsPageStateType
-    profilePage: (state:profilePageStateType, action:dispatchActionType) => profilePageStateType
-    usersPage: (state:UsersStateType, action:UserActionType) => UsersStateType
+    dialogsPage:(state: dialogsPageStateType, action: DialogsActionsType) => dialogsPageStateType
+    profilePage: (state:profilePageStateType, action:ProfileActionsType) => profilePageStateType
+    usersPage: (state:UsersStateType, action:UsersActionsType) => UsersStateType
 }
 export type storeType= (reducers: reducersCombineType)=> void;
-export type reducersCombineType = ({}:reducersType)=> void
+export type reducersCombineType = ({}:reducersType)=> void;
+
 const rootReducer= combineReducers({
     dialogsPage:dialogsReducer,
     profilePage: profileReducer,
@@ -23,8 +24,17 @@ const rootReducer= combineReducers({
 })
 
 export type AppStateType = ReturnType<typeof rootReducer>;
+
 export const store = createStore(rootReducer, applyMiddleware(thunk));
 
+export type AppActionsType =
+    AppReducerActionType
+| AuthActionsType
+| DialogsActionsType
+| ProfileActionsType
+| UsersActionsType
+
+export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, AppActionsType>
 
 // @ts-ignore
 window.store = store;

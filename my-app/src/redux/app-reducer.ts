@@ -1,7 +1,8 @@
 import React from 'react';
 import { authAPI } from '../api/api';
 import {Dispatch} from "react";
-import { getUserAuthData } from './auth-reducer';
+import {AuthActionsType, getUserAuthData } from './auth-reducer';
+import { AppThunkType } from './reduxState';
 
 const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
 
@@ -27,9 +28,12 @@ export const appReducer = (state :InitializedStateType = initialState, action: s
 
 export type setInitializedSuccesType = ReturnType<typeof setInitializedSuccess>;
 
-
 const setInitializedSuccess = () => ({type: INITIALIZED_SUCCESS})
-export const getInitializedSuccess = () => (dispatch:any)=>{
+
+
+export const getInitializedSuccess = ():AppThunkType => (dispatch)=>{
     let promise = dispatch(getUserAuthData())
         promise.then(()=> dispatch(setInitializedSuccess()))
 }
+
+export type AppReducerActionType = setInitializedSuccesType

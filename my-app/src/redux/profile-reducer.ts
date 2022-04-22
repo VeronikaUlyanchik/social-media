@@ -1,9 +1,7 @@
-import { userAPI } from "../api/api";
+import {userAPI} from "../api/api";
 import {postsDataType} from "../components/Profile/MyPosts/MyPosts";
 import {dispatchActionType, profilePageStateType} from "./state";
-import {
-    Dispatch
-} from "../../../../../Program Files/JetBrains/WebStorm 2021.3.1/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/react";
+import {Dispatch} from "react";
 
 const ADD_POST = 'ADD_POST';
 const SET_PROFILE_USER = 'SET_PROFILE_USER';
@@ -44,23 +42,33 @@ export const profileReducer = (state: profilePageStateType = initialState, actio
     }
 }
 
+
 export const addPostActionCreator = (text: string) => ({type: ADD_POST, text});
-const setProfileUserAC = (profile: any) => ({type:SET_PROFILE_USER, profile});
-const getProfileStatusAC = (status: any) => ({type:GET_PROFILE_STATUS, status});
-const updateProfileStatusAC = (status: any) => ({type:UPDATE_PROFILE_STATUS, status});
-export const getProfileUser = (userId:string) => (dispatch: Dispatch<dispatchActionType>) => {
+const setProfileUserAC = (profile: any) => ({type: SET_PROFILE_USER, profile});
+const getProfileStatusAC = (status: any) => ({type: GET_PROFILE_STATUS, status});
+const updateProfileStatusAC = (status: any) => ({type: UPDATE_PROFILE_STATUS, status});
+
+
+export const getProfileUser = (userId: string) => (dispatch: Dispatch<ProfileActionsType>) => {
     userAPI.getProfile(userId).then(response => {
         dispatch(setProfileUserAC(response.data))
     })
 };
-export const getProfileStatus = (userId:string) => (dispatch: Dispatch<dispatchActionType>) => {
+export const getProfileStatus = (userId: string) => (dispatch: Dispatch<ProfileActionsType>) => {
     userAPI.getProfileStatus(userId).then(response => {
         dispatch(getProfileStatusAC(response.data))
     })
 };
-export const updateProfileStatus = (status:string) => (dispatch: Dispatch<dispatchActionType>) => {
+export const updateProfileStatus = (status: string) => (dispatch: Dispatch<ProfileActionsType>) => {
     userAPI.updateProfileStatus(status).then(response => {
-        if(response.data.resultCode === 0){
-        dispatch(updateProfileStatusAC(status))
-    }})
+        if (response.data.resultCode === 0) {
+            dispatch(updateProfileStatusAC(status))
+        }
+    })
 };
+
+export type ProfileActionsType =
+    ReturnType<typeof addPostActionCreator>
+    | ReturnType<typeof setProfileUserAC>
+    | ReturnType<typeof getProfileStatusAC>
+    | ReturnType<typeof updateProfileStatusAC>

@@ -1,8 +1,8 @@
 import React from 'react';
 import {UsersPropsType} from './UsersContainer';
 import s from './users.module.css';
-import { UserType } from '../../redux/users-reducer';
 import { NavLink } from 'react-router-dom';
+import { UserType } from '../../api/api';
 
 export type UsersType = {
     users: Array<UserType>
