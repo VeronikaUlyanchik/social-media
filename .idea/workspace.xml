@@ -2,16 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3902cf3b-e0df-42e2-9dc9-1bd6b85ae9ac" name="Changes" comment="Second week (18-23 way)">
-      <change afterPath="$PROJECT_DIR$/my-app/src/components/Profile/ProfileInfo/ProfileStatus.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-app/src/components/Profile/ProfileInfo/ProfileStatusClass.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-app/src/api/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/api/api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/components/Profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Profile/Profile.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-app/src/components/Profile/ProfileContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Profile/ProfileContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/components/Profile/ProfileInfo/ProfileInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Profile/ProfileInfo/ProfileInfo.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/components/Users/Users.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Users/Users.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/components/Users/UsersContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Users/UsersContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/Profile/ProfileInfo/ProfileStatus.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Profile/ProfileInfo/ProfileStatus.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/redux/auth-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/redux/auth-reducer.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-app/src/redux/profile-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/redux/profile-reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/redux/state.ts" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/redux/state.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.yarn-integrity" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,9 +20,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="TypeScript JSX File" />
         <option value="CSS File" />
         <option value="TypeScript File" />
-        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -52,7 +51,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="23FMek6yiNYeGN0LYQKUR6djS1F" />
   <component name="ProjectViewState">
@@ -63,7 +62,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/my-app/src/components/Profile/ProfileInfo" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2021.3.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
@@ -71,11 +70,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\it-incubator\social-media2\my-app\src\components\Profile" />
-      <recent name="C:\it-incubator\social-media2\my-app\src\components\Preloader" />
-      <recent name="C:\it-incubator\social-media2\my-app\src\components\Users" />
+      <recent name="C:\it-incubator\social-media2\my-app\src\components\Profile\ProfileInfo" />
       <recent name="C:\it-incubator\social-media2\my-app\src\redux" />
-      <recent name="C:\it-incubator\social-media2\my-app\src\components\Dialogs" />
+      <recent name="C:\it-incubator\social-media2\my-app\src\components\Login" />
+      <recent name="C:\it-incubator\social-media2\my-app\src\utils" />
+      <recent name="C:\it-incubator\social-media2\my-app\src\components\Profile" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\it-incubator\social-media2\my-app\src\components\Profile\MyPosts" />
@@ -147,7 +146,30 @@
       <workItem from="1648293167885" duration="6318000" />
       <workItem from="1648763142554" duration="1951000" />
       <workItem from="1648904577653" duration="128000" />
-      <workItem from="1648990366542" duration="5202000" />
+      <workItem from="1648990366542" duration="6201000" />
+      <workItem from="1649066407670" duration="10970000" />
+      <workItem from="1649150649965" duration="5111000" />
+      <workItem from="1649167540387" duration="3494000" />
+      <workItem from="1649253428945" duration="6784000" />
+      <workItem from="1649275919318" duration="4450000" />
+      <workItem from="1649280660505" duration="35000" />
+      <workItem from="1649421434262" duration="333000" />
+      <workItem from="1649422449639" duration="1192000" />
+      <workItem from="1649526010444" duration="2075000" />
+      <workItem from="1649531527658" duration="3948000" />
+      <workItem from="1649692858225" duration="4613000" />
+      <workItem from="1649766896358" duration="132000" />
+      <workItem from="1649878828707" duration="4805000" />
+      <workItem from="1649885914652" duration="133000" />
+      <workItem from="1650011863439" duration="4071000" />
+      <workItem from="1650026648733" duration="43000" />
+      <workItem from="1650200900560" duration="2434000" />
+      <workItem from="1650300070074" duration="799000" />
+      <workItem from="1650570891674" duration="5554000" />
+      <workItem from="1650622784939" duration="5493000" />
+      <workItem from="1650637658612" duration="559000" />
+      <workItem from="1650729868432" duration="98000" />
+      <workItem from="1650794998788" duration="4324000" />
     </task>
     <task id="LOCAL-00001" summary="react added">
       <created>1641326383349</created>

@@ -26,13 +26,14 @@ export type mapDispatchToPropsType = {
 export type ProfilePropsType = MapStateToPropsType & mapDispatchToPropsType;
 
 const ProfileContainer: React.FC<ProfilePropsType> = (props) => {
+        const dispatch = useDispatch();
         const {id,isAuth} = useSelector((state:AppStateType)=>state.auth);
         let {userId} = useParams();
         useEffect(() => {
                 if (!userId) {
                     userId = id ? id.toString() : '';
                 }
-                id && props.getProfileUser(userId)
+                id && dispatch(getProfileUser(userId))
                 props.getProfileStatus(userId)
         }, [userId])
         if (!isAuth) return <Navigate to={'/login'}/>

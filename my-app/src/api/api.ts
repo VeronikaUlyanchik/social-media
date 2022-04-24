@@ -43,7 +43,8 @@ export const userAPI = {
         return instance.get<any, AxiosResponse<string>>(`profile/status/${userId}`)
     },
     updateProfileStatus(status: string) {
-        return instance.put<any, AxiosResponse<ResponseType<{message: string}>>,string >(`profile/status/`, status)
+        debugger
+        return instance.put<any, AxiosResponse<ResponseType>,{status: string} >(`profile/status/`, {status})
     },
 };
 

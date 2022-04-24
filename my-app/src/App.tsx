@@ -20,8 +20,11 @@ import {
 
 
 function App() {
+
     const dispatch = useDispatch();
-    const {initialized} = useSelector((state:AppStateType)=> state.app)
+
+    const {initialized} = useSelector((state:AppStateType)=> state.app);
+
     useEffect(()=> {dispatch(getInitializedSuccess())},[]);
 
 

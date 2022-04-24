@@ -30,7 +30,6 @@ export type FormDataType = {
 export const authReducer = (state :AuthStateType = initialState, action: setUserAuthACType ):AuthStateType => {
         switch (action.type) {
             case "SET_USER_AUTH":
-                debugger
                 return {
                     ...state,
                     ...action.payload,

@@ -60,6 +60,7 @@ export const getProfileStatus = (userId: string) => (dispatch: Dispatch<ProfileA
     })
 };
 export const updateProfileStatus = (status: string) => (dispatch: Dispatch<ProfileActionsType>) => {
+
     userAPI.updateProfileStatus(status).then(response => {
         if (response.data.resultCode === 0) {
             dispatch(updateProfileStatusAC(status))
