@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import {connect, useDispatch, useSelector} from 'react-redux';
 import {Navigate, useParams} from 'react-router-dom';
 import {getProfileStatus, getProfileUser, updateProfileStatus} from '../../redux/profile-reducer';
@@ -25,7 +25,7 @@ export type mapDispatchToPropsType = {
 
 export type ProfilePropsType = MapStateToPropsType & mapDispatchToPropsType;
 
-const ProfileContainer: React.FC<ProfilePropsType> = (props) => {
+const ProfileContainer: React.FC<ProfilePropsType> = memo((props) => {
         const dispatch = useDispatch();
         const {id,isAuth} = useSelector((state:AppStateType)=>state.auth);
         let {userId} = useParams();
@@ -40,7 +40,7 @@ const ProfileContainer: React.FC<ProfilePropsType> = (props) => {
         return (
             <Profile state={props.profile} status={props.status} updateStatus={props.updateProfileStatus}/>
         )
-    }
+    })
 ;
 
 const mapStateToProps = (state: AppStateType) => ({

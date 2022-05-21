@@ -41,7 +41,7 @@ export const authReducer = (state :AuthStateType = initialState, action: setUser
 
 export type setUserAuthACType = ReturnType<typeof setUserAuthAC>;
 
-const setUserAuthAC = (data: AuthStateType) => ({type: SET_USER_AUTH, payload: data});
+export const setUserAuthAC = (data: AuthStateType) => ({type: SET_USER_AUTH, payload: data});
 
 export const getUserAuthData = () => (dispatch: Dispatch<AuthActionsType>):Promise<any> => {
        return authAPI.authMe()

@@ -1,4 +1,4 @@
-import {dialogsPageStateType, dispatchActionType, messagesItemsProps, stateType} from "./state";
+import {dialogsPageStateType, dispatchActionType, messagesItemsProps} from "./state";
 
 const ADD_MESSAGE = 'ADD_MESSAGE';
 

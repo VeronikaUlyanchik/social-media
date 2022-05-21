@@ -7,6 +7,7 @@ const ADD_POST = 'ADD_POST';
 const SET_PROFILE_USER = 'SET_PROFILE_USER';
 const GET_PROFILE_STATUS = 'SET_PROFILE_STATUS';
 const UPDATE_PROFILE_STATUS = 'UPDATE_PROFILE_STATUS';
+const DELETE_POST = 'DELETE_POST';
 
 let initialState = {
     postData: [
@@ -37,6 +38,9 @@ export const profileReducer = (state: profilePageStateType = initialState, actio
         case UPDATE_PROFILE_STATUS: {
             return {...state, status: action.status};
         }
+        case DELETE_POST: {
+            return {...state, postData: state.postData.filter(i=> i.id !== action.id)};
+        }
         default:
             return state;
     }
@@ -46,7 +50,8 @@ export const profileReducer = (state: profilePageStateType = initialState, actio
 export const addPostActionCreator = (text: string) => ({type: ADD_POST, text});
 const setProfileUserAC = (profile: any) => ({type: SET_PROFILE_USER, profile});
 const getProfileStatusAC = (status: any) => ({type: GET_PROFILE_STATUS, status});
-const updateProfileStatusAC = (status: any) => ({type: UPDATE_PROFILE_STATUS, status});
+export const updateProfileStatusAC = (status: any) => ({type: UPDATE_PROFILE_STATUS, status});
+export const deletePostAC = (id: number) => ({type: DELETE_POST, id});
 
 
 export const getProfileUser = (userId: string) => (dispatch: Dispatch<ProfileActionsType>) => {
@@ -73,3 +78,4 @@ export type ProfileActionsType =
     | ReturnType<typeof setProfileUserAC>
     | ReturnType<typeof getProfileStatusAC>
     | ReturnType<typeof updateProfileStatusAC>
+    | ReturnType<typeof deletePostAC>

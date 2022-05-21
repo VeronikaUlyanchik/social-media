@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import {useParams} from 'react-router-dom';
 import {Preloader} from '../../Preloader/Preloader';
 import classes from './ProfileInfo.module.scss';
@@ -12,7 +12,7 @@ type ProfileInfoPropsType = {
     status: string
     updateStatus: (status: string) => void
 }
-export const ProfileInfo = ({state, ...props}: ProfileInfoPropsType) => {
+export const ProfileInfo = memo(({state, ...props}: ProfileInfoPropsType) => {
     const mainPictureS = {
         backgroundImage: `url(${mainPicture})`
     }
@@ -40,4 +40,4 @@ export const ProfileInfo = ({state, ...props}: ProfileInfoPropsType) => {
             </div>
         </div>
     )
-}
+}) ;

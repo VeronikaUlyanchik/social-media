@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useDispatch } from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import { logout } from '../../redux/auth-reducer';
@@ -9,7 +9,7 @@ type HeaderPropsType = {
     isAuth: boolean
 }
 
-export const Header: React.FC<HeaderPropsType> = (props) => {
+export const Header: React.FC<HeaderPropsType> = memo((props) => {
     const dispatch = useDispatch();
 
     const onLogoutClick=()=> {
@@ -26,4 +26,4 @@ export const Header: React.FC<HeaderPropsType> = (props) => {
             </div>
         </header>
     )
-}
+}) ;

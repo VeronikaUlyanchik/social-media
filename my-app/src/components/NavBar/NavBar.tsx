@@ -11,7 +11,6 @@ export const NavBar:React.FC = memo(() => {
     const {id} = useSelector((state:AppStateType)=>state.auth);
     return (
         <nav className={classes.nav}>
-            {/*className в новом синтаксисе может принимать не только строку, но и функцию, а в функции в качестве аргумента объект, через деструктуризацию мы заберем из него isActive свойство*/}
             <div className={classes.item}><NavLink
                 className={({isActive})=>isActive ? classes.activeLink : classes.deactiveLink}
                 to={`/profile/${id}`}>Profile</NavLink></div>

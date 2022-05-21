@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { memo , useCallback} from 'react';
 import classes from './Dialogs.module.scss';
 import {DialogsItems} from "./DialogsItems/DialogsItems";
 import {MessagesItems} from "./Messages/Messages";
 import {dialogsPageStateType} from "../../redux/state";
-import {Navigate} from 'react-router-dom';
-import {Field, Form, Formik, useFormik} from 'formik';
+import { useFormik} from 'formik';
 
 
 type dialogsPropsType = {
@@ -15,9 +14,9 @@ type dialogsPropsType = {
 
 export const Dialogs: React.FC<dialogsPropsType> = ({dialogsPageData, ...props}) => {
 
-    const sendMessage = (text: string) => {
+    const sendMessage = useCallback((text: string) => {
         props.addMessageActionCreator(text)
-    }
+    },[])
     const dialogsItems = dialogsPageData.dialogs.map((d => <DialogsItems name={d.name} id={d.id}/>));
     const messageItems = dialogsPageData.messages.map((m => <MessagesItems message={m.message}/>));
 
@@ -40,7 +39,7 @@ type AddMessageFormType = {
     sendMessage: (text: string) => void
 }
 
-const AddMessageForm = (props: AddMessageFormType) => {
+const AddMessageForm = memo((props: AddMessageFormType) => {
 
     const formik = useFormik({
         initialValues: {
@@ -74,4 +73,4 @@ const AddMessageForm = (props: AddMessageFormType) => {
             </button>
         </form>
     )
-}
+})

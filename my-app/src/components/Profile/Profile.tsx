@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { UserProfileType } from '../../api/api';
 import { MyPostsContainer } from './MyPosts/MyPostsContainer';
 import { ProfileInfo } from './ProfileInfo/ProfileInfo';
@@ -9,11 +9,11 @@ type profilePropsType={
     updateStatus: (status: string) => void
 }
 
-export const Profile:React.FC<profilePropsType> =({state,...props})=>{
+export const Profile:React.FC<profilePropsType> =memo(({state,...props})=>{
     return (
         <div>
             <ProfileInfo state={state} status={props.status} updateStatus={props.updateStatus} />
            <MyPostsContainer />
         </div>
     )
-}
+});

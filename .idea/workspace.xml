@@ -2,7 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3902cf3b-e0df-42e2-9dc9-1bd6b85ae9ac" name="Changes" comment="Second week (18-23 way)">
+      <change afterPath="$PROJECT_DIR$/my-app/src/redux/app-reducer.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-app/src/redux/auth-reducer.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-app/src/redux/dialogs-reducer.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my-app/src/redux/profile-reducer.test.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/Dialogs/Dialogs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Dialogs/Dialogs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/Dialogs/Messages/Messages.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Dialogs/Messages/Messages.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Header/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/NavBar/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/NavBar/NavBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/Profile/MyPosts/MyPosts.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Profile/MyPosts/MyPosts.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/Profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Profile/Profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/Profile/ProfileContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Profile/ProfileContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/Profile/ProfileInfo/ProfileInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/Profile/ProfileInfo/ProfileInfo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/redux/app-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/redux/app-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/redux/auth-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/redux/auth-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/redux/dialogs-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/redux/dialogs-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/redux/profile-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/redux/profile-reducer.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +71,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Native JS" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/my-app/src/redux" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2021.3.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
@@ -62,8 +79,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\it-incubator\social-media2\my-app\src\components\Profile\ProfileInfo" />
       <recent name="C:\it-incubator\social-media2\my-app\src\redux" />
+      <recent name="C:\it-incubator\social-media2\my-app\src\components\Profile\ProfileInfo" />
       <recent name="C:\it-incubator\social-media2\my-app\src\components\Login" />
       <recent name="C:\it-incubator\social-media2\my-app\src\utils" />
       <recent name="C:\it-incubator\social-media2\my-app\src\components\Profile" />
@@ -164,6 +181,8 @@
       <workItem from="1650794998788" duration="4514000" />
       <workItem from="1650837047401" duration="37000" />
       <workItem from="1651663589327" duration="1365000" />
+      <workItem from="1651689994774" duration="767000" />
+      <workItem from="1653136355019" duration="6746000" />
     </task>
     <task id="LOCAL-00001" summary="react added">
       <created>1641326383349</created>

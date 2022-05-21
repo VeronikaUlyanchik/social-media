@@ -1,5 +1,5 @@
-import {Field, Form, Formik, useFormik } from 'formik';
-import React from 'react';
+import { useFormik } from 'formik';
+import React, { memo } from 'react';
 import classes from './MyPosts.module.scss';
 import {Post} from './Post/Post';
 
@@ -15,7 +15,7 @@ type myPostPropsType = {
     addPostActionCreator:(text: string) => void
 }
 
-export const MyPosts: React.FC<myPostPropsType> = (props) => {
+export const MyPosts: React.FC<myPostPropsType> = memo((props) => {
 
     const addPost = (text:string) => {
         props.addPostActionCreator(text);
@@ -36,7 +36,7 @@ export const MyPosts: React.FC<myPostPropsType> = (props) => {
             </div>
         </div>
     )
-};
+});
 
 const AddPostForm = (props:any) =>{
 

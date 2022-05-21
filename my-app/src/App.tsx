@@ -37,6 +37,7 @@ function App() {
             <NavBar/>
             <div className="app-wrapper-content">
                 <Routes>
+                    <Route path="/" element={<ProfileContainerC/>}> </Route>
                     <Route path="/profile/:userId" element={<ProfileContainerC/>}> </Route>
                     <Route path="/messages/*" element={<DialogsContainer/>}/>
                     <Route path="/news" element={<News/>}/>
